@@ -2,13 +2,13 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-NAME = so_long
+NAME = cub3D
 
-LIBFT = ./libft/
+# LIBFT = ./libft/
 
-LIBFT_NAME = libft/libft.a
+# LIBFT_NAME = libft/libft.a
 
-FILES  = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c helpers.c moves.c main.c
+FILES  =  main.c #get_next_line/get_next_line.c get_next_line/get_next_line_utils.c helpers.c moves.c
 
 FILES_O = $(FILES:.c=.o)
 
@@ -16,16 +16,18 @@ FILES_O = $(FILES:.c=.o)
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 $(NAME): $(FILES)
-	make -s -C $(LIBFT)
-	$(CC) $(CFLAGS) $? $(LIBFT_NAME) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(CFLAGS) $? -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+# make -s -C $(LIBFT)
+# $(CC) $(CFLAGS) $? $(LIBFT_NAME) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+
 
 clean : 
-	make clean -s -C $(LIBFT)
 	rm -f $(FILES_O) $(BONUS_O)
+# make clean -s -C $(LIBFT)
 
 fclean : clean
-	make fclean -s -C $(LIBFT)
 	rm -f $(NAME) $(NAME_BONUS)
+#make fclean -s -C $(LIBFT)
 
 re : fclean $(NAME)
 
