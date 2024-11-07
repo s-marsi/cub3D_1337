@@ -4,8 +4,8 @@ AR = ar -r
 
 NAME = libft.a
 
-FILES = ft_isdigit.c  ft_strlen.c ft_strcmp.c ft_strlcpy.c ft_strlcat.c \
-		ft_bzero.c ft_calloc.c ft_strdup.c ft_memset.c ft_atoi.c	\
+FILES = ft_isdigit.c  ft_strlen.c ft_strcmp.c ft_strncmp.c ft_strlcpy.c ft_strlcat.c \
+		ft_bzero.c ft_calloc.c ft_strdup.c ft_memset.c ft_atoi.c	ft_strnstr.c\
 		ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_putnbr_fd.c ft_putchar_fd.c ft_putendl_fd.c
 
 BONUS_FILES = ft_lstnew_bonus.c	\
