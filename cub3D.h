@@ -6,9 +6,25 @@
 # endif
 
 # include "libft/libft.h"
-#include <mlx.h>
-#include <X11/X.h>
-#include <X11/keysym.h>
+// #include <mlx.h>
+// #include <X11/X.h>
+// #include <X11/keysym.h>
+#include "./minilibx-linux/mlx.h"
+
+typedef struct s_data
+{
+    void   *mlx;
+    void    *win;
+    int    player_x;
+    int    player_y;
+    char **mapStructure;
+    char **fullMapData;
+    char *north_texture;
+    char *south_texture;
+    char *west_texture;
+    char *east_texture;
+}   t_data;
+
 
 char	*get_next_line(int fd);
 char	*ft_strjoin_next(char *s1, char *s2);
@@ -23,21 +39,13 @@ typedef enum    e_textures
     EA, 
     F
 }   t_textures;
-typedef struct s_data
-{
-    char **mapStructure;
-    char **fullMapData;
-    char *north_texture;
-    char *south_texture;
-    char *west_texture;
-    char *east_texture;
 
-}   t_data;
 void    parsing_part(char *av[], t_data *data);
 void    validMap(char *name, t_data *data);
 int    is_identifier(t_data *data, char *line, int *values);
 void    skip_space(char **line);
 char	**my_split(char const *s, char c);
 int     in_array(char to_search, char *search_in);
+void    raycasting(t_data *data);
 
 #endif
