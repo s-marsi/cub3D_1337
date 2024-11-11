@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 12:56:44 by smarsi            #+#    #+#             */
-/*   Updated: 2024/11/02 21:29:46 by smarsi           ###   ########.fr       */
+/*   Updated: 2024/11/06 21:11:51 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 int			ft_isdigit(int c);
 size_t		ft_strlen(const char *s);
 int			ft_strcmp(const char *s1, const char *s2);
+int			ft_strncmp(const char *s1, const char *s2, size_t len);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 long long	ft_atoi(char *str);
@@ -34,6 +35,7 @@ char		*ft_strjoin(char *s1, char *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n);
+char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 typedef struct s_list
 {
 	int				content;

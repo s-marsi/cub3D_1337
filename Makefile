@@ -1,6 +1,6 @@
 CC = cc 
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror  -g3 #-fsanitize=address
 
 NAME = cub3D
 
@@ -10,7 +10,8 @@ LIBFT_NAME = libft/libft.a
 
 MINILIBX_NAME = minilibx-linux/libmlx.a minilibx-linux/libmlx_Linux.a
 
-SOUFAYNE_FILES  =  main.c parsing/start.c #get_next_line/get_next_line.c get_next_line/get_next_line_utils.c helpers.c moves.c
+SOUFAYNE_FILES  =  main.c parsing/start.c parsing/map_validation.c parsing/map_validation_helper.c parsing/my_split.c\
+				   get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 AMINE_FILES = raycasting/raycasting.c
 
