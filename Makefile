@@ -8,25 +8,24 @@ LIBFT = ./libft/
 
 LIBFT_NAME = libft/libft.a
 
+MINILIBX_NAME = minilibx-linux/libmlx.a minilibx-linux/libmlx_Linux.a
+
 SOUFAYNE_FILES  =  main.c parsing/start.c #get_next_line/get_next_line.c get_next_line/get_next_line_utils.c helpers.c moves.c
 
-AMINE_FILES = 
+AMINE_FILES = raycasting/raycasting.c
 
-S_FILES_O = $(SOUFAYNE_FILES:.c=.o)
-
-A_FILES_O = (AMINE_FILES:.c=.o)
+FILES_O = $(SOUFAYNE_FILES:.c=.o) $(AMINE_FILES:.c=.o)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
-$(NAME): $(S_FILES_O) $(S_FA_FILES_OILES_O)
+$(NAME): $(FILES_O) $(S_FA_FILES_OILES_O)
 	make -s -C $(LIBFT)
-	$(CC) $(CFLAGS) $? $(LIBFT_NAME) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-
+	$(CC) $(CFLAGS) $? $(LIBFT_NAME) $(MINILIBX_NAME) -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 clean : 
 	make clean -s -C $(LIBFT)
-	rm -f $(S_FILES_O) $(S_FA_FILES_OILES_O) $(BONUS_O)
+	rm -f $(FILES_O) $(S_FA_FILES_OILES_O) $(BONUS_O)
 
 fclean : clean
 	make fclean -s -C $(LIBFT)
