@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:11:26 by smarsi            #+#    #+#             */
-/*   Updated: 2024/11/07 19:15:43 by smarsi           ###   ########.fr       */
+/*   Updated: 2024/11/20 11:43:16 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static	int	count_word(char const *s, char c)
 			flag = 0;
 		}
 		if (s[i] == c)
-        {
-            count++;    
+		{
+			count++;
 			flag = 1;
-        }
+		}
 		i++;
 	}
 	return (count);
@@ -45,16 +45,16 @@ static	char	*get_word(char *dst, char const *src, char c, int	*index)
 	int	len;
 
 	i = *index;
-    start = i;
+	start = i;
 	while (src[i])
-    {
+	{
 		if (src[i] == c)
-        {
-            i++;
-            break;
-        }
-        i++;
-    }
+		{
+			i++;
+			break ;
+		}
+		i++;
+	}
 	len = (i - start) + 1;
 	dst = ft_calloc(len, sizeof(char));
 	ft_strlcpy(dst, src + start, len);

@@ -1,6 +1,6 @@
 #include "../cub3D.h"
 
-int is_withspace(int c)
+int	is_withspace(int c)
 {
 	if (c && (c == ' ' || c == '\t' || c == '\n'))
 	{
@@ -19,7 +19,7 @@ void	get_texture(t_data *data, char *line, char **texture, int index)
 	{
 		while (line[i] && is_withspace(line[i]))
 			i++;
-    	if (!line[i] || line[i] == '\n')
+		if (!line[i] || line[i] == '\n')
 			print_error(data, "Error: Invalid texture. Expected: \
 '[NO|SO|...]' ./texture_path'.");
 		j = i;
@@ -62,19 +62,11 @@ void	is_valid_texture(t_data *data, char *texture, char c)
 	}
 }
 
-void	is_valid_color(t_data *data, char *texture, char c)
+void	check_identifiers_get_map(t_data *data, char *line, int index)
 {
-	onlyValidCharacters(data, texture, c);
-	validComma(data, texture, c);
-	
-}
-
-
-void	checkIdentifiersGetMap(t_data *data, char *line, int index)
-{
-	checkIdentifiers(data, line);
+	check_identifiers(data, line);
 	if (!in_array(line[0], "01NSEW\n"))
-				print_error(data, "There is a bad character in the map.");
+		print_error(data, "There is a bad character in the map.");
 	is_valid_texture(data, data->texture_north, 'N');
 	is_valid_texture(data, data->texture_south, 'S');
 	is_valid_texture(data, data->texture_west, 'W');
@@ -85,7 +77,7 @@ void	checkIdentifiersGetMap(t_data *data, char *line, int index)
 	check_map(data);
 }
 
-void	getTextureConfig(t_data *data)
+void	get_texture_config(t_data *data)
 {
 	char	*line;
 	int		i;
@@ -109,7 +101,7 @@ void	getTextureConfig(t_data *data)
 		else if (!ft_strncmp(line, "C", 1))
 			get_texture(data, line + 1, &data->texture_color, 5);
 		else if (line && *line)
-			return (checkIdentifiersGetMap(data, line, i));
+			return (check_identifiers_get_map(data, line, i));
 		i++;
 	}
 }
