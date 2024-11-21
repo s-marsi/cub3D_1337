@@ -59,6 +59,19 @@ void	check_empty_map(t_data *data)
 	exit(1);
 }
 
+void	check_all_identifiers(t_data *data)
+{
+	int		i;
+
+	i = 0;
+	while (i < 6)
+	{
+		if (data->counters[i] == 0)
+				print_error(data, "Map invalid.");
+		i++;
+	}
+}
+
 void	parsing_part(char *av[], t_data *data)
 {
 	valid_map_name(av[1]);
@@ -68,5 +81,6 @@ void	parsing_part(char *av[], t_data *data)
 	// ft_print(data, data->fullMapData);
 	validate_texture_path(data);
 	get_texture_config(data);
+	check_all_identifiers(data);
 	// ft_print(data, data->mapStructure);
 }
