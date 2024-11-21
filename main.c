@@ -34,7 +34,7 @@ int main(int ac, char *av[])
     }
     initialize_data(&data);
     parsing_part(av, &data);
-    // raycasting(&data);
+    raycasting(&data);
     ft_free(data.fullMapData);
 	ft_free(data.mapStructure);
     return (0);
