@@ -47,6 +47,7 @@ typedef struct s_data
     int    nb_of_colums;
     int    width;
     int    height;
+    char	**mapStructureClone;
     char	**mapStructure;
     char	**fullMapData;
     char	*texture_north;

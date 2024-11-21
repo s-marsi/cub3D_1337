@@ -12,12 +12,12 @@ void	ft_print(t_data *data, char **test)
 		printf("%s", test[i]);
 		i++;
 	}
-	printf("*%s*\n", data->texture_east);
-	printf("*%s*\n", data->texture_north);
-	printf("*%s*\n", data->texture_south);
-	printf("*%s*\n", data->texture_west);
-	printf("*%s*\n", data->texture_color);
-	printf("*%s*\n", data->texture_fcolor);
+	// printf("*%s*\n", data->texture_east);
+	// printf("*%s*\n", data->texture_north);
+	// printf("*%s*\n", data->texture_south);
+	// printf("*%s*\n", data->texture_west);
+	// printf("*%s*\n", data->texture_color);
+	// printf("*%s*\n", data->texture_fcolor);
 	(void) data;
 }
 
@@ -30,10 +30,10 @@ void	check_empty_line_map(t_data *data)
 	flag = 0;
 	if (!data)
 		return ;
-	while (data->mapStructure[i])
+	while (data->mapStructureClone[i])
 	{
 		j = 0;
-		line = data->mapStructure[i];
+		line = data->mapStructureClone[i];
 		while (line[j] && in_array(line[j], " \t"))
 			j++;
 		if (line[j] && line[j] == '\n')
@@ -53,14 +53,14 @@ void	check_map(t_data *data)
 	char	*line;
 
 	int (i), (j);
-	if (!data || !data->mapStructure)
+	if (!data || !data->mapStructureClone)
 		return ;
 	i = 0;
 	check_empty_line_map(data);
-	while (data->mapStructure[i])
+	while (data->mapStructureClone[i])
 	{
 		j = 0;
-		line = data->mapStructure[i];
+		line = data->mapStructureClone[i];
 		while (line[j])
 		{
 			if (!in_array(line[j], "0 1NSEW\n"))

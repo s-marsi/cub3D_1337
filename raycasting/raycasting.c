@@ -64,7 +64,7 @@ void draw_circle(t_data *data, int radius, int color)
     int y;
     while (angle < 2 * M_PI)
     {
-        printf("--------entred------\n");
+        // printf("--------entred------\n");
         if (player && player->player_x && player->player_y)
         {
             x = player->player_x + (int)(radius * cos(angle));
@@ -163,8 +163,8 @@ void raycasting(t_data *data)
 {
     data->nb_of_rows = ft_height(data);
     data->nb_of_colums =  ft_max_width(data);
-    printf("--------%d\n", data->nb_of_rows);
-    printf("--------%d\n", data->nb_of_colums);
+    // printf("--------%d\n", data->nb_of_rows);
+    // printf("--------%d\n", data->nb_of_colums);
     data->tile_size = 40;
     data->height = data->nb_of_rows * data->tile_size;
     data->width = data->nb_of_colums * data->tile_size;

@@ -8,6 +8,8 @@ void	print_error(t_data *data, char *msg)
 		ft_free(data->fullMapData);
 	if (data->mapStructure)
 		ft_free(data->mapStructure);
+	if (data->mapStructureClone)
+		ft_free(data->mapStructureClone);
 	exit (1);
 }
 

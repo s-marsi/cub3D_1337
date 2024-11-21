@@ -81,7 +81,7 @@ void	parsing_part(char *av[], t_data *data)
 	// ft_print(data, data->fullMapData);
 	validate_texture_path(data);
 	get_texture_config(data);
-	if (!data->mapStructure)
+	if (!data->mapStructureClone)
 		print_error(data, "Empty Map.");
 	check_all_identifiers(data);
 	// ft_print(data, data->mapStructure);
