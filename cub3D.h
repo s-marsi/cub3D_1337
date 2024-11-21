@@ -61,6 +61,7 @@ int     is_withspace(int c);
 void	only_valid_characters(t_data *data, char *texture, char c);
 void	valid_comma(t_data *data, char *texture);
 void	is_valid_color(t_data *data, char *texture, char c);
+void	print_repeated(t_data *data, int i);
 
 void    ft_print(t_data *data, char **test);
 #endif

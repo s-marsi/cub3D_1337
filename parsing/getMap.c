@@ -22,7 +22,7 @@ void	parse_map_file(char *name, t_data *data)
 	if (data && (!data->fullMapData || !data->fullMapData[0]))
 	{
 		ft_putendl_fd("Error", 2);
-		ft_putstr_fd("Empty Map.\n", 2);
+		ft_putstr_fd("Empty File.\n", 2);
 		exit(1);
 	}
 	free(map);
