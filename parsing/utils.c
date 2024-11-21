@@ -14,6 +14,22 @@ int	in_array(char to_search, char *search_in)
 	return (0);
 }
 
+void	print_repeated(t_data *data, int i)
+{
+	if (i == 0)
+		print_error(data, "[NO] Texture repeated.");
+	if (i == 1)
+		print_error(data, "[SO] Texture repeated.");
+	if (i == 2)
+		print_error(data, "[WE] Texture repeated.");
+	if (i == 3)
+		print_error(data, "[EA] Texture repeated.");
+	if (i == 4)
+		print_error(data, "[F] Texture repeated.");
+	if (i == 5)
+		print_error(data, "[C] Texture repeated.");
+}
+
 void	ft_free(char **str)
 {
 	int	i;

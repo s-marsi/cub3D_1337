@@ -22,7 +22,7 @@ void	parse_map_file(char *name, t_data *data)
 	if (data && (!data->fullMapData || !data->fullMapData[0]))
 	{
 		ft_putendl_fd("Error", 2);
-		ft_putstr_fd("Empty Map.\n", 2);
+		ft_putstr_fd("Empty File.\n", 2);
 		exit(1);
 	}
 	free(map);
@@ -40,6 +40,8 @@ void	get_map(t_data *data, int i)
 		map = ft_strjoin(map, data->fullMapData[i]);
 		i++;
 	}
-	data->mapStructure = my_split(map, '\n');
+	printf("*%s*\n", map);
+	data->mapStructure = ft_split(map, '\n');
+	data->mapStructureClone = my_split(map, '\n');
 	free(map);
 }

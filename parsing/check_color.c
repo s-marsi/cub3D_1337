@@ -22,8 +22,8 @@ void	only_valid_characters(t_data *data, char *texture, char c)
 			}
 			else if (texture[i] == '-' && texture[i + 1]
 				&& ft_isdigit(texture[i + 1]))
-				print_error(data, "Invalid color value: \
- Must be between 0 and 255.");
+				print_error(data, "R,G,B colors must be in range\
+ [0,255]: 0, 255, 255");
 			else if (c == 'F')
 				print_error(data, "[F]: Invalid Identifiers.");
 			else if (c == 'C')
@@ -54,9 +54,11 @@ void	handle_comma(t_data *data, int *flag, int *count, int *i)
 void	count_comma_number(t_data *data, int comma_count, int digit_count)
 {
 	if (comma_count != 2)
-		print_error(data, "Invalid color: (either invalid or missing) [,].");
+		print_error(data, "Invalid color:\
+ (either invalid or missing) [,].");
 	if (digit_count != 3)
-		print_error(data, "Invalid RGB: (255,0,0).");
+		print_error(data, "R,G,B colors must be in range [0,255]:\
+ 0, 255, 255");
 }
 
 void	valid_comma(t_data *data, char *texture)
@@ -73,8 +75,8 @@ void	valid_comma(t_data *data, char *texture)
 		else if (flag == 1 && (texture[i] == '+' || ft_isdigit(texture[i])))
 		{
 			if (ft_atoi(texture + i) < 0 || ft_atoi(texture + i) > 255)
-				print_error(data, "Invalid color value: \
-It must be between 0 and 255.");
+				print_error(data, "R,G,B colors must be in range\
+ [0,255]: 0, 255, 255");
 			if (texture[i] == '+')
 				i++;
 			while (texture[i] && ft_isdigit(texture[i]))
@@ -82,7 +84,8 @@ It must be between 0 and 255.");
 			flag = 2; digit_count++;
 		}
 		else if (texture[i] && ft_isdigit(texture[i]) && flag == 2)
-			print_error(data, "Invalid RGB: (255,0,0).");
+			print_error(data, "R,G,B colors must be in range [0,255]:\
+ 0, 255, 255");
 		while (texture[i] && in_array(texture[i], " \t\n"))
 			i++;
 	}

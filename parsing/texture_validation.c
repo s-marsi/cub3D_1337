@@ -28,7 +28,7 @@ void	get_texture(t_data *data, char *line, char **texture, int index)
 		*texture = line + i;
 		data->counters[index]++;
 		if (data->counters[index] > 1)
-			print_error(data, "Texture repeated.");
+			print_repeated(data, index);
 	}
 	else
 		print_error(data, "Error: Invalid texture.");
@@ -64,7 +64,7 @@ void	check_identifiers_get_map(t_data *data, char *line, int index)
 {
 	check_identifiers(data, line);
 	if (!in_array(line[0], "01NSEW\n"))
-		print_error(data, "There is a bad character in the map.");
+		print_error(data, "There is a bad character in the file.");
 	is_valid_texture(data, data->texture_north, 'N');
 	is_valid_texture(data, data->texture_south, 'S');
 	is_valid_texture(data, data->texture_west, 'W');

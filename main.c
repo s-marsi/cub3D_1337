@@ -6,6 +6,7 @@ void	initialize_data(t_data *data)
 
 	data->fullMapData = NULL;
 	data->mapStructure = NULL;
+	data->mapStructureClone = NULL;
 	data->texture_color = NULL;
 	data->texture_east = NULL;
 	data->texture_fcolor = NULL;
@@ -34,8 +35,9 @@ int main(int ac, char *av[])
     }
     initialize_data(&data);
     parsing_part(av, &data);
-    raycasting(&data);
+    // raycasting(&data);
     ft_free(data.fullMapData);
 	ft_free(data.mapStructure);
+	ft_free(data.mapStructureClone);
     return (0);
 }
