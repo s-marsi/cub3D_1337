@@ -43,10 +43,10 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_stack;
 t_stack		*ft_lstnew(int content, int index);
-void		ft_lstadd_front(t_stack **lst, t_stack *new);
+void		ft_lstadd_front(t_stack **lst, t_stack *newd);
 int			ft_lstsize(t_stack *lst);
 t_stack		*ft_lstlast(t_stack *lst);
-void		ft_lstadd_back(t_stack **lst, t_stack *new);
+void		ft_lstadd_back(t_stack **lst, t_stack *newd);
 void		ft_lstdelone(t_stack *lst, void (*del)(int));
 void		ft_lstclear(t_stack **lst, void (*del)(int));
 void		ft_lstiter(t_stack **lst);

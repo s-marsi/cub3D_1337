@@ -9,12 +9,44 @@
 // #include <mlx.h>
 // #include <X11/X.h>
 // #include <X11/keysym.h>
-// #include "./minilibx-linux/mlx.h"
+#include "./minilibx-linux/mlx.h"
+#include <math.h>
+
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
+#define UP_AROW 65362
+#define DOWN_AROW 65364
+#define RIGHT_AROW 65363
+#define LEFT_AROW 65361
+
+
+typedef struct s_player
+{
+    int			player_x;
+    int			player_y;
+    int			prev_player_x;
+    int			prev_player_y;
+    int			turn_direction;
+	int			walk_rotation;
+	double		rotation_angle;
+	double		move_speed;
+	double		rotation_speed;
+	int			line_size;
+}   t_player;
+
 
 typedef struct s_data
 {
     void	*mlx;
-    void	*win;
+    void    *win;
+    int    tile_size;
+    int    nb_of_rows;
+    int    nb_of_colums;
+    int    width;
+    int    height;
     char	**mapStructure;
     char	**fullMapData;
     char	*texture_north;
@@ -26,6 +58,12 @@ typedef struct s_data
     int     counters[6];
     int		player_x;
     int		player_y;
+	void	*mlx_img;
+	char *data_img;
+	int bits_per_pixel;
+    int size_line;
+    int endian;
+    t_player *player;
 }   t_data;
 
 
