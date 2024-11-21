@@ -20,8 +20,7 @@ void	get_texture(t_data *data, char *line, char **texture, int index)
 		while (line[i] && is_withspace(line[i]))
 			i++;
 		if (!line[i] || line[i] == '\n')
-			print_error(data, "Error: Invalid texture. Expected: \
-'[NO|SO|...]' ./texture_path'.");
+			print_error(data, "Error: Invalid texture.");
 		j = i;
 		while (line[j] && line[j] != '\n')
 			j++;
@@ -32,8 +31,7 @@ void	get_texture(t_data *data, char *line, char **texture, int index)
 			print_error(data, "Texture repeated.");
 	}
 	else
-		print_error(data, "Error: Invalid texture. Expected: \
-'[NO|SO|...]' ./texture_path'.");
+		print_error(data, "Error: Invalid texture.");
 }
 
 void	is_valid_texture(t_data *data, char *texture, char c)

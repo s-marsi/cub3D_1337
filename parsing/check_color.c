@@ -51,12 +51,21 @@ void	handle_comma(t_data *data, int *flag, int *count, int *i)
 	}
 }
 
+void	count_comma_number(t_data *data, int comma_count, int digit_count)
+{
+	if (comma_count != 2)
+		print_error(data, "Invalid color: (either invalid or missing) [,].");
+	if (digit_count != 3)
+		print_error(data, "Invalid RGB: (255,0,0).");
+}
+
 void	valid_comma(t_data *data, char *texture)
 {
-	int (i), (flag), (count);
+	int (i), (flag), (count), (digit_count);
 	count = 0;
 	i = 0;
 	flag = 1;
+	digit_count = 0;
 	while (texture[i])
 	{
 		if (is_comma(texture[i]))
@@ -70,13 +79,12 @@ It must be between 0 and 255.");
 				i++;
 			while (texture[i] && ft_isdigit(texture[i]))
 				i++;
-			flag = 2;
+			flag = 2; digit_count++;
 		}
 		else if (texture[i] && ft_isdigit(texture[i]) && flag == 2)
-			print_error(data, "Invalid Color.");
+			print_error(data, "Invalid RGB: (255,0,0).");
 		while (texture[i] && in_array(texture[i], " \t\n"))
 			i++;
 	}
-	if (count > 2)
-		print_error(data, "Invalid color: (either invalid or missing) [,].");
+	count_comma_number(data, count, digit_count);
 }
