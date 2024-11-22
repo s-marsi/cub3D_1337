@@ -1,6 +1,4 @@
 #include "../cub3D.h"
-#include <stdio.h>
-#include <unistd.h>
 
 size_t ft_height(t_data *data)
 {
@@ -60,18 +58,17 @@ void draw_circle(t_data *data, int radius, int color)
     // printf("--------entred------\n");
     t_player *player = data->player;
     double angle = 0;
-    int x;
-    int y;
+    int x = 0;
+    int y = 0;
     while (angle < 2 * M_PI)
     {
-        // printf("--------entred------\n");
         if (player && player->player_x && player->player_y)
         {
             x = player->player_x + (int)(radius * cos(angle));
             y = player->player_y + (int)(radius * sin(angle));
         }
         mlx_pixel_put(data->mlx, data->win, x, y, color);
-        angle += 0.01;
+        angle += 0.04;
     }
     draw_line(data);
 }
@@ -121,32 +118,32 @@ void renderMap(t_data *data)
 void render(t_data *data)
 {
     renderMap(data);
-    draw_circle(data, 5, 0xFF0000);
     mlx_put_image_to_window(data->mlx, data->win, data->mlx_img, 0, 0);
 }
 
 int fn_key(int keycode, t_data *data)
 {
     t_player *player = data->player;
-    if (keycode == 119)
+    if (player && player->player_y && keycode == 119)
         player->player_y -= 5;
-    else if (keycode == 100)
+    else if (player && player->player_x && keycode == 100)
         player->player_x += 5;
-    else if (keycode == 115)
+    else if (player && player->player_y && keycode == 115)
         player->player_y += 5;
-    else if (keycode == 97)
+    else if (player && player->player_x && keycode == 97)
         player->player_x -= 5;
-    else if (keycode == UP_AROW)
+    else if (player && player->rotation_angle && keycode == UP_AROW)
         player->rotation_angle += player->rotation_speed;
-    else if (keycode == DOWN_AROW)
+    else if (player && player->rotation_angle && keycode == DOWN_AROW)
         player->rotation_angle -= player->rotation_speed;
-    else if (keycode == RIGHT_AROW)
+    else if (player && player->rotation_angle && keycode == RIGHT_AROW)
         player->rotation_angle += player->rotation_speed;
-    else if (keycode == LEFT_AROW)
+    else if (player && player->rotation_angle && keycode == LEFT_AROW)
         player->rotation_angle -= player->rotation_speed;
 
     mlx_clear_window(data->mlx, data->win);
     render(data);
+    draw_circle(data, 5, 0xFF0000);
     return 0;
 }
 
@@ -171,7 +168,7 @@ void raycasting(t_data *data)
     init(data);
     mlx_hook(data->win, 2, 1L << 0, fn_key, data);
     render(data);
-
+    draw_circle(data, 5, 0xFF0000);
     // draw_circle(data->mlx, data->win, data, 5, 0xFF0000);
     mlx_loop(data->mlx);
 }
