@@ -80,7 +80,7 @@ void	parsing_part(char *av[], t_data *data)
 	// check_empty_map(data);
 	// ft_print(data, data->fullMapData);
 	validate_texture_path(data);
-	// if i want to chek that the map in the last modify this.
+	// check valide texture. (if i want to chek that the map in the last modify this.)
 	get_texture_config(data);
 	if (!data->mapStructureClone)
 		print_error(data, "Empty Map.");
