@@ -89,6 +89,7 @@ void    check_map(t_data *data);
 void    get_map(t_data *data, int i);
 void	get_texture_config(t_data *data);
 void    validate_texture_path(t_data *data);
+void	textures_extension(t_data *data, char *texture);
 void	check_identifiers(t_data *data, char *line);
 int    is_identifier(t_data *data, char *line, int *values);
 void    skip_space(char **line);
@@ -100,7 +101,9 @@ int     is_withspace(int c);
 void	only_valid_characters(t_data *data, char *texture, char c);
 void	valid_comma(t_data *data, char *texture);
 void	is_valid_color(t_data *data, char *texture, char c);
+long long	my_atoi(t_data *data, char *str);
 void	print_repeated(t_data *data, int i);
-
+void	parsing_map(t_data *data);
+void	adjust_map_width(t_data *data);
 void    ft_print(t_data *data, char **test);
 #endif

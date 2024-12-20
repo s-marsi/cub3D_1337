@@ -1,4 +1,4 @@
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
 void	ft_print(t_data *data, char **test)
 {
@@ -9,7 +9,7 @@ void	ft_print(t_data *data, char **test)
 		return ;
 	while (test[i])
 	{
-		printf("%s", test[i]);
+		printf("%s\n", test[i]);
 		i++;
 	}
 	// printf("*%s*\n", data->texture_east);
