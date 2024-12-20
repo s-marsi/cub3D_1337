@@ -84,5 +84,6 @@ void	parsing_part(char *av[], t_data *data)
 	if (!data->mapStructureClone)
 		print_error(data, "Empty Map.");
 	check_all_identifiers(data);
-	// ft_print(data, data->mapStructure);
+	parsing_map(data);
+	ft_print(data, data->mapStructureClone);
 }

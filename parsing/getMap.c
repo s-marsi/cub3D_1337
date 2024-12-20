@@ -40,8 +40,7 @@ void	get_map(t_data *data, int i)
 		map = ft_strjoin(map, data->fullMapData[i]);
 		i++;
 	}
-	printf("*%s*\n", map);
 	data->mapStructure = ft_split(map, '\n');
-	data->mapStructureClone = my_split(map, '\n');
+	data->mapStructureClone = ft_split(map, '\n');
 	free(map);
 }
