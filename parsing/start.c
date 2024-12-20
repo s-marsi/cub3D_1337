@@ -53,10 +53,6 @@ void	check_empty_map(t_data *data)
 			return ;
 		i++;
 	}
-	ft_free(data->fullMapData);
-	ft_putendl_fd("Error", 2);
-	ft_putstr_fd("Empty Map.\n", 2);
-	exit(1);
 }
 
 void	check_all_identifiers(t_data *data)
@@ -74,15 +70,24 @@ void	check_all_identifiers(t_data *data)
 
 void	parsing_part(char *av[], t_data *data)
 {
+	// map extension is .cub
 	valid_map_name(av[1]);
+	// valid that the map exist
 	valid_map_path(av[1]);
+	// get the file lines using get_next_line
 	parse_map_file(av[1], data);
-	check_empty_map(data);
+	// i think no need to this for check empty map
+	// check_empty_map(data);
 	// ft_print(data, data->fullMapData);
 	validate_texture_path(data);
+	// if i want to chek that the map in the last modify this.
 	get_texture_config(data);
 	if (!data->mapStructureClone)
 		print_error(data, "Empty Map.");
+	textures_extension(data, data->texture_north);
+	textures_extension(data, data->texture_south);
+	textures_extension(data, data->texture_east);
+	textures_extension(data, data->texture_west);
 	check_all_identifiers(data);
 	parsing_map(data);
 	ft_print(data, data->mapStructureClone);

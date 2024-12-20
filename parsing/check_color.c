@@ -74,7 +74,7 @@ void	valid_comma(t_data *data, char *texture)
 			handle_comma(data, &flag, &count, &i);
 		else if (flag == 1 && (texture[i] == '+' || ft_isdigit(texture[i])))
 		{
-			if (ft_atoi(texture + i) < 0 || ft_atoi(texture + i) > 255)
+			if (my_atoi(data, texture + i) < 0 || my_atoi(data, texture + i) > 255)
 				print_error(data, "R,G,B colors must be in range\
  [0,255]: 0, 255, 255");
 			if (texture[i] == '+')

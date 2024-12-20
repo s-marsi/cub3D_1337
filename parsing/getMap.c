@@ -42,5 +42,7 @@ void	get_map(t_data *data, int i)
 	}
 	data->mapStructure = ft_split(map, '\n');
 	data->mapStructureClone = ft_split(map, '\n');
+	if (!data->mapStructure || !data->mapStructureClone)
+		print_error(data, "Empty Map.");
 	free(map);
 }

@@ -1,5 +1,18 @@
 #include "../cub3D.h"
 
+void	print_error(t_data *data, char *msg)
+{
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(msg, 2);
+	if (data->fullMapData)
+		ft_free(data->fullMapData);
+	if (data->mapStructure)
+		ft_free(data->mapStructure);
+	if (data->mapStructureClone)
+		ft_free(data->mapStructureClone);
+	exit (1);
+}
+
 int	in_array(char to_search, char *search_in)
 {
 	int	i;
