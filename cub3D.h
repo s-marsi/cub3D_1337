@@ -17,7 +17,7 @@
 #define M_PI 3.14159265358979323846
 #endif
 
-#define UP_AROW 65362
+#define  UP_AROW 65362
 #define DOWN_AROW 65364
 #define RIGHT_AROW 65363
 #define LEFT_AROW 65361

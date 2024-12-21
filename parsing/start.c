@@ -90,5 +90,5 @@ void	parsing_part(char *av[], t_data *data)
 	textures_extension(data, data->texture_west);
 	check_all_identifiers(data);
 	parsing_map(data);
-	ft_print(data, data->mapStructureClone);
+	// ft_print(data, data->mapStructureClone);
 }
