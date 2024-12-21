@@ -34,17 +34,16 @@ int	get_max_len(char **map)
 	return (len);
 }
 
-
 void	adjust_map_width(t_data *data)
 {
 	char	*map;
 
 	int (i), (j), (len);
 	i = 0;
-	len = get_max_len(data->mapStructureClone);
-	while (data->mapStructureClone && data->mapStructureClone[i])
+	len = get_max_len(data->mapStructure);
+	while (data->mapStructure && data->mapStructure[i])
 	{
-		map = data->mapStructureClone[i];
+		map = data->mapStructure[i];
 		j = 0;
 		while (map[j])
 		{
@@ -52,8 +51,8 @@ void	adjust_map_width(t_data *data)
 				map[j] = '2';
 			j++;
 		}
-		if ((int) ft_strlen(map) > 0 &&  (int) ft_strlen(map) < len)
-			data->mapStructureClone[i] = fill_line_with_two(map, len);
+		if ((int)ft_strlen(map) > 0 && (int) ft_strlen(map) < len)
+			data->mapStructure[i] = fill_line_with_two(map, len);
 		i++;
 	}
 }

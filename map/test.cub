@@ -1,12 +1,10 @@
-   
-   
-   
-   NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
- EA ./path_to_the_east_texture
- F 220,100,0
- C 225,30,0
+NO cub3d-tester/textures/wall.xpm
+SO cub3d-tester/textures/bricks.xpm
+WE cub3d-tester/textures/gold.xpm
+EA cub3d-tester/textures/wood.xpm
+F 110,111,119
+C 115,111,0
+
 
 1111111111111111111111111
 1000000000110000000000001

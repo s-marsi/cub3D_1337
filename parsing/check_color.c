@@ -33,11 +33,6 @@ void	only_valid_characters(t_data *data, char *texture, char c)
 	}
 }
 
-int	is_comma(char c)
-{
-	return (c && c == ',');
-}
-
 void	handle_comma(t_data *data, int *flag, int *count, int *i)
 {
 	if (*flag != 2)
@@ -70,18 +65,20 @@ void	valid_comma(t_data *data, char *texture)
 	digit_count = 0;
 	while (texture[i])
 	{
-		if (is_comma(texture[i]))
+		if (texture[i] == ',')
 			handle_comma(data, &flag, &count, &i);
 		else if (flag == 1 && (texture[i] == '+' || ft_isdigit(texture[i])))
 		{
-			if (my_atoi(data, texture + i) < 0 || my_atoi(data, texture + i) > 255)
+			if (my_atoi(data, texture + i) < 0 || \
+			my_atoi(data, texture + i) > 255)
 				print_error(data, "R,G,B colors must be in range\
  [0,255]: 0, 255, 255");
 			if (texture[i] == '+')
 				i++;
 			while (texture[i] && ft_isdigit(texture[i]))
 				i++;
-			flag = 2; digit_count++;
+			flag = 2;
+			digit_count++;
 		}
 		else if (texture[i] && ft_isdigit(texture[i]) && flag == 2)
 			print_error(data, "R,G,B colors must be in range [0,255]:\
