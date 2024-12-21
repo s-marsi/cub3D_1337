@@ -9,7 +9,6 @@ size_t ft_height(t_data *data)
         // printf("neeeeext---%ld\n", l);
         l++;
     }
-    exit (0);
     return l;
 }
 
