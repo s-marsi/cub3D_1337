@@ -25,18 +25,57 @@
 
 typedef struct s_player
 {
-    int			player_x;
-    int			player_y;
-    int			prev_player_x;
-    int			prev_player_y;
-    int			turn_direction;
-	int			walk_rotation;
-	double		rotation_angle;
-	double		move_speed;
-	double		rotation_speed;
-	int			line_size;
-}   t_player;
+	float player_x;
+	float player_y;
+	float width;
+	float height;
+	int turnDirection;
+    int walkDirection;
+	int walkDirection_u_d;
+	int walkDirection_l_r;
+	float rotationAngle;
+	float walkSpeed;
+	float turnSpeed;
+}	t_player;
 
+
+typedef struct s_rays
+{
+	float rayAngle;
+	float ray_X;
+	float ray_Y;
+	double distance;
+	double wall_h;
+    double b_pix;
+	double t_pix;
+	double perpWallDist;
+	int side;
+    int ray_side;
+}	t_rays;
+
+typedef struct s_init
+{
+    void	    *mlx;
+	void	    *win;
+    char        **map;
+	void	    *mlx_img;
+	char        *data_img;
+	int         bits_per_pixel;
+    int         size_line;
+    int         endian;
+    int		    window_width;
+	int		    window_height;
+	int         prgrm_runing;
+	int		    tile_size;
+	int		    map_rows_num;
+	int		    map_cols_num;
+	float	    fov_angle;
+	size_t	    num_rays;
+	t_player	*player;
+	t_rays		*rays;
+    int         color_floor;
+    int         color_ceiling;
+}   t_init;
 
 typedef struct s_data
 {
@@ -106,4 +145,11 @@ void	print_repeated(t_data *data, int i);
 void	parsing_map(t_data *data);
 void	adjust_map_width(t_data *data);
 void    ft_print(t_data *data, char **test);
+//-------------------
+int get_position_x(char **map);
+int get_position_y(char **map);
+void init_player(t_init *vars);
+void    handle_keys(t_init *vars);
+void    update(t_init *vars);
+void render(t_init *vars);
 #endif

@@ -53,7 +53,7 @@ int main(int ac, char *av[])
     initialize_data(&data);
     parsing_part(av, &data);
     raycasting(&data);
-    // ft_print(&data, data.mapStructure);
+    ft_print(&data, data.mapStructure);
 	free_data(&data);
     return (0);
 }
