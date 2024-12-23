@@ -69,7 +69,6 @@ void renderMap(t_init *vars)
 
 void render(t_init *vars)
 {
-    // ft_print(&data, data.mapStructure);
     renderMap(vars);
     renderPlayer(vars,0);
     mlx_put_image_to_window(vars->mlx, vars->win, vars->mlx_img, 0, 0);

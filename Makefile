@@ -15,7 +15,7 @@ SOUFAYNE_FILES  =  main.c \
 	parsing/map/map_parsing.c parsing/map/map_validation.c parsing/map/adjust_map.c\
 	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
-AMINE_FILES = raycasting/start.c raycasting/init_player.c raycasting/get_position.c raycasting/handle_keys.c raycasting/update.c raycasting/draw.c
+AMINE_FILES = raycasting/start.c #raycasting/init_player.c raycasting/get_position.c raycasting/handle_keys.c raycasting/update.c raycasting/draw.c
 
 FILES_O = $(SOUFAYNE_FILES:.c=.o) $(AMINE_FILES:.c=.o)
 
