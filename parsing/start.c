@@ -82,6 +82,7 @@ void	parsing_part(char *av[], t_data *data)
 	validate_texture_path(data);
 	// check valide texture. (if i want to chek that the map in the last modify this.)
 	get_texture_config(data);
+	get_color(data);
 	if (!data->mapStructureClone)
 		print_error(data, "Empty Map.");
 	textures_extension(data, data->texture_north);

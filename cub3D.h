@@ -56,6 +56,8 @@ typedef struct s_data
     char	*texture_east;
     char	*texture_color;
     char	*texture_fcolor;
+    int		ceiling_color;
+    int		floor_color;
     int     counters[6];
     int		player_x;
     int		player_y;
@@ -86,6 +88,7 @@ void    parsing_part(char *av[], t_data *data);
 void    parse_map_file(char *name, t_data *data);
 void    valid_map(char *name, t_data *data);
 void    check_map(t_data *data);
+void	get_color(t_data *data);
 void    get_map(t_data *data, int i);
 void	get_texture_config(t_data *data);
 void    validate_texture_path(t_data *data);
