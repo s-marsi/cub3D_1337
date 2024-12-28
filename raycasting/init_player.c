@@ -20,10 +20,9 @@ void init_player(t_init *vars)
     int player_x = get_position_x(vars->map);
     int player_y = get_position_y(vars->map);
 
-    // Validate player position
     if (player_x == -1 || player_y == -1) {
         printf("Error: Player position not found in the map.\n");
-        exit(1);  // or handle it differently
+        exit(1);
     }
 
     vars->player->player_x = (player_x * vars->tile_size) + (vars->tile_size / 2);
@@ -35,7 +34,6 @@ void init_player(t_init *vars)
     vars->player->turnDirection = 0;
     vars->player->walkDirection = 0;
     vars->player->rotationAngle = ft_rotate_angle(player_x, player_y, vars);
-    // printf("-------------------%f\n", vars->player->rotationAngle);
     vars->player->walkSpeed = 4;
     vars->player->turnSpeed = 4 * (M_PI / 180);
 }

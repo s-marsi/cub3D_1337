@@ -46,12 +46,5 @@ void    handle_keys(t_init *vars)
 {
     printf("entred\n");
     mlx_hook(vars->win, 2, 1L<<0, handle_key_press, vars);
-    printf("------------%d\n", vars->player->walkDirection_l_r);
-    printf("------------%d\n", vars->player->walkDirection_u_d);
-    printf("------------%d\n", vars->player->turnDirection);
     mlx_hook(vars->win, 3, 1L<<1, handle_key_up, vars);
-    printf("------------%d\n", vars->player->walkDirection_l_r);
-    printf("------------%d\n", vars->player->walkDirection_u_d);
-    printf("------------%d\n", vars->player->turnDirection);
-    mlx_hook(vars->win, 17, 0, handle_mouse_click, vars);
 }

@@ -31,12 +31,6 @@ void	ft_print2(char **test)
 		printf("%s\n", test[i]);
 		i++;
 	}
-	// printf("*%s*\n", data->texture_east);
-	// printf("*%s*\n", data->texture_north);
-	// printf("*%s*\n", data->texture_south);
-	// printf("*%s*\n", data->texture_west);
-	// printf("*%s*\n", data->texture_color);
-	// printf("*%s*\n", data->texture_fcolor);
 }
 
 void renderMap(t_init *vars)
@@ -53,7 +47,7 @@ void renderMap(t_init *vars)
     {
         j = 0;
         x = 0;
-        while(j < vars->map_cols_num)
+        while(j < (int)ft_strlen(vars->map[i]))
         {
             if(vars->map[i][j] == '0')
                 draw_rectangle(vars, x, y, vars->tile_size, vars->tile_size, 0x000000);

@@ -152,4 +152,6 @@ void init_player(t_init *vars);
 void    handle_keys(t_init *vars);
 void    update(t_init *vars);
 void render(t_init *vars);
+size_t ft_height(t_data *data);
+size_t ft_max_width(t_data *data);
 #endif
