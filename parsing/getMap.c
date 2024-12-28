@@ -1,5 +1,35 @@
 #include "../cub3D.h"
 
+void	get_color(t_data *data)
+{
+	int	i;
+
+	i = 2;
+	if (data->texture_fcolor)
+	{
+		while (data->texture_fcolor && i >= 0)
+		{
+			ft_memset(((char *)&data->floor_color) + i--, (int)ft_atoi(data->texture_fcolor), 1);
+			while (*data->texture_fcolor && *data->texture_fcolor != ',')
+				data->texture_fcolor++;
+			if (*data->texture_fcolor && *data->texture_fcolor == ',')
+				data->texture_fcolor++;
+		}
+	}
+	i = 2;
+	if (data->texture_color)
+	{
+		while (data->texture_color && i >= 0)
+		{
+			ft_memset(((char *)&data->ceiling_color) + i--, (int)ft_atoi(data->texture_color), 1);
+			while (*data->texture_color && *data->texture_color != ',')
+				data->texture_color++;
+			if (*data->texture_color && *data->texture_color == ',')
+				data->texture_color++;
+		}
+	}
+}
+
 void	parse_map_file(char *name, t_data *data)
 {
 	char	*buf;

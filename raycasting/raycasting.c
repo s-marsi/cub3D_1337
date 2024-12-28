@@ -55,11 +55,11 @@ void draw_line(t_data *data)
 
 void draw_circle(t_data *data, int radius, int color)
 {
-    // printf("--------entred------\n");
     t_player *player = data->player;
     double angle = 0;
     int x = 0;
     int y = 0;
+    // printf("--------entred------\n");
     while (angle < 2 * M_PI)
     {
         if (player && player->player_x && player->player_y)
@@ -105,6 +105,8 @@ void renderMap(t_data *data)
                 draw_rectangle(data, x, y, data->tile_size, data->tile_size, 0x000000);
             else if (data->mapStructure[i][j] == '1')
                 draw_rectangle(data, x, y, data->tile_size, data->tile_size, 0xFFFFFF);
+            else if (in_array(data->mapStructure[i][j], "ESWN"))
+                draw_rectangle(data, x, y, data->tile_size, data->tile_size, 0xFF0000);
             else
                 j++;
             j++;

@@ -19,6 +19,8 @@ void	ft_print(t_data *data, char **test)
 	// printf("*%s*\n", data->texture_color);
 	// printf("*%s*\n", data->texture_fcolor);
 	(void) data;
+	(void) test;
+
 }
 
 void	check_empty_line_map(t_data *data)
