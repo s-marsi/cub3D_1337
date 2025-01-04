@@ -50,10 +50,10 @@ void	draw_floor_ceiling(t_init *vars, int ray, int t_pix, int b_pix)
 
 	i = t_pix;
 	while (i < (int)vars->window_height)
-		put_one_pixel(vars, ray, i++, vars->color_floor);
+		put_one_pixel(vars, ray, i++, vars->data->floor_color);
 	i = 0;
 	while (i < b_pix)
-		put_one_pixel(vars, ray, i++, vars->color_ceiling);
+		put_one_pixel(vars, ray, i++, vars->data->ceiling_color);
 }
 
 void	draw_wall(t_init *vars, int ray, int t_pix, int b_pix)

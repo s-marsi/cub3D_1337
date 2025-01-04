@@ -1,6 +1,6 @@
 CC = cc 
 
-CFLAGS = -Wall -Wextra -Werror  -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror  -g3 #-fsanitize=address
 
 NAME = cub3D
 
@@ -37,3 +37,6 @@ fclean : clean
 re : fclean $(NAME)
 
 .PHONY : clean fclean
+
+run : 
+	valgrind --leak-check=full --show-leak-kinds=all   ./cub3D map/rgb2.cub 
