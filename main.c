@@ -33,19 +33,9 @@ static void	free_data(t_data *data)
 int main(int ac, char *av[])
 {
     t_data  data;
-    t_player    *player;
 
-    player = malloc(sizeof(t_player));
     data.fullMapData = NULL;
     data.mapStructure = NULL;
-    player->player_x = 100;
-    player->player_y = 100;
-    player->rotation_angle = M_PI / 2;
-    player->rotation_speed = 3 * (M_PI / 180);
-    player->move_speed = 3.0;
-    player->turn_direction = 0;
-    player->line_size = 30;
-    data.player = player;
     if (ac != 2)
     {
 		ft_putendl_fd("Error", 2);
@@ -55,7 +45,7 @@ int main(int ac, char *av[])
     initialize_data(&data);
     parsing_part(av, &data);
     raycasting(&data);
-     ft_print(&data, data.mapStructure);
+    // ft_print(&data, data.mapStructure);
 	free_data(&data);
     return (0);
 }
