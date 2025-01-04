@@ -53,6 +53,7 @@ void raycasting(t_data *data) {
     t_init vars;
     t_player player;
 
+    vars.data = data;
     vars.player = &player;
     vars.prgrm_runing = init_values(&vars, data);
     init_player(&vars);

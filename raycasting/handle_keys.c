@@ -22,17 +22,24 @@ static int handle_mouse_move(int x, int y, t_init *vars)
     (void)y;
     int center_x = vars->window_width / 2;
     int delta_x = x - center_x;
-    printf("center_x = %d | x = %d | delta-x = %d\n",center_x,x,delta_x);
+    // printf("center_x = %d | x = %d | delta-x = %d\n",center_x,x,delta_x);
     vars->player->rotationAngle += delta_x * vars->player->turnSpeed * 0.0005;
     return (0);
 }
 
 static int	handle_key_press(int keycode, t_init *vars)
 {
-    printf("%d\n",keycode);
-    if (keycode == 65307)
+    // printf("%d\n",keycode);
+    if (keycode == 65307 || keycode == 57)
 	{
+        mlx_destroy_image(vars->mlx, vars->mlx_img);
+        mlx_clear_window(vars->mlx, vars->win);
 		mlx_destroy_window(vars->mlx, vars->win);
+        mlx_destroy_display(vars->mlx);
+        ft_free(vars->data->fullMapData);
+        ft_free(vars->data->mapStructure);
+        ft_free(vars->data->mapStructureClone);
+        free(vars->rays);
 		free(vars->mlx);
         exit(0);
 	}

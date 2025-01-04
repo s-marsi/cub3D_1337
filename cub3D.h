@@ -53,30 +53,6 @@ typedef struct s_rays
     int ray_side;
 }	t_rays;
 
-typedef struct s_init
-{
-    void	    *mlx;
-	void	    *win;
-    char        **map;
-	void	    *mlx_img;
-	char        *data_img;
-	int         bits_per_pixel;
-    int         size_line;
-    int         endian;
-    int		    window_width;
-	int		    window_height;
-	int         prgrm_runing;
-	int		    tile_size;
-	int		    map_rows_num;
-	int		    map_cols_num;
-	float	    fov_angle;
-	size_t	    num_rays;
-	t_player	*player;
-	t_rays		*rays;
-    int         color_floor;
-    int         color_ceiling;
-}   t_init;
-
 typedef struct s_data
 {
     int    nb_of_rows;
@@ -99,6 +75,30 @@ typedef struct s_data
     int		player_y;
 }   t_data;
 
+typedef struct s_init
+{
+    void	    *mlx;
+	void	    *win;
+    char        **map;
+	void	    *mlx_img;
+	char        *data_img;
+	int         bits_per_pixel;
+    int         size_line;
+    int         endian;
+    int		    window_width;
+	int		    window_height;
+	int         prgrm_runing;
+	int		    tile_size;
+	int		    map_rows_num;
+	int		    map_cols_num;
+	float	    fov_angle;
+	size_t	    num_rays;
+	t_player	*player;
+	t_rays		*rays;
+    int         color_floor;
+    int         color_ceiling;
+    t_data      *data;
+}   t_init;
 
 char	*get_next_line(int fd);
 char	*ft_strjoin_next(char *s1, char *s2);
