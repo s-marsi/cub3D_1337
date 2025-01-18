@@ -75,6 +75,14 @@ typedef struct s_init
 	t_rays		*rays;
     int         color_floor;
     int         color_ceiling;
+
+    void *textures[4]; // Pointers to the wall textures (e.g., North, South, East, West)
+    char *texture_data[4];
+    int texture_width[4];
+    int texture_height[4];
+    int texture_bpp[4];
+    int texture_line_size[4];
+    int texture_endian[4];
 }   t_init;
 
 typedef struct s_data

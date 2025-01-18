@@ -56,20 +56,22 @@ void	draw_floor_ceiling(t_init *vars, int ray, int t_pix, int b_pix)
 		put_one_pixel(vars, ray, i++, vars->color_ceiling);
 }
 
-void	draw_wall(t_init *vars, int ray, int t_pix, int b_pix)
-{
-	int color;
+void draw_wall(t_init *vars, int ray, int t_pix, int b_pix) {
+    int tex_index = vars->rays[ray].ray_side - 1; // Map side determines the texture
+    int wall_height = b_pix - t_pix;
+    int texture_x = (int)(vars->rays[ray].ray_X) % vars->tile_size;
+    int texture_y;
+    int color;
 
-	switch (vars->rays[ray].ray_side) {
-		case 4: color = 0xFF0000; break;
-		case 3: color = 0x00FF00; break;
-		case 2:  color = 0x0000FF; break;
-		case 1:  color = 0xFFFF00; break;
-	}
-
-	while (t_pix < b_pix)
-		put_one_pixel(vars, ray, t_pix++, color);
+    for (int y = t_pix; y < b_pix; y++) {
+        texture_y = ((y - t_pix) * vars->texture_height[tex_index]) / wall_height;
+        color = *(unsigned int *)(vars->texture_data[tex_index]
+                + (texture_y * vars->texture_line_size[tex_index])
+                + (texture_x * (vars->texture_bpp[tex_index] / 8)));
+        put_one_pixel(vars, ray, y, color);
+    }
 }
+
 
 void	render_wall(t_init *vars, int ray)
 {
@@ -77,73 +79,72 @@ void	render_wall(t_init *vars, int ray)
 	draw_wall(vars, ray, vars->rays[ray].t_pix, vars->rays[ray].b_pix);
 }
 
-void cast_Rays(t_init *vars)
-{
+void cast_Rays(t_init *vars) {
     size_t i;
     float rayAngle;
 
-    rayAngle = vars->player->rotationAngle - (30 * M_PI/180);
+    rayAngle = vars->player->rotationAngle - (30 * M_PI / 180);
     i = 0;
-    while(i < vars->num_rays)
-    {
+    while (i < vars->num_rays) {
         vars->rays[i].ray_X = vars->player->player_x;
         vars->rays[i].ray_Y = vars->player->player_y;
         vars->rays[i].rayAngle = rayAngle;
         rayAngle += vars->fov_angle / vars->num_rays;
-            float deltaDistX;
-            float deltaDistY;
-            int stepX, stepY;
-            float sideDistX, sideDistY;
-            if (cos(vars->rays[i].rayAngle) == 0)
-                deltaDistX = INFINITY;
-            else
-                deltaDistX = fabs(1 / cos(vars->rays[i].rayAngle)); 
-            if (sin(vars->rays[i].rayAngle) == 0)
-                deltaDistY = INFINITY;
-            else
-                deltaDistY = fabs(1 / sin(vars->rays[i].rayAngle)); 
-            if (cos(vars->rays[i].rayAngle) < 0)
-            {
-                stepX = -1;
-                sideDistX = (vars->rays[i].ray_X - floor(vars->rays[i].ray_X)) * deltaDistX;
+
+        float deltaDistX, deltaDistY;
+        int stepX, stepY;
+        float sideDistX, sideDistY;
+
+        if (cos(vars->rays[i].rayAngle) == 0)
+            deltaDistX = INFINITY;
+        else
+            deltaDistX = fabs(1 / cos(vars->rays[i].rayAngle));
+
+        if (sin(vars->rays[i].rayAngle) == 0)
+            deltaDistY = INFINITY;
+        else
+            deltaDistY = fabs(1 / sin(vars->rays[i].rayAngle));
+
+        if (cos(vars->rays[i].rayAngle) < 0) {
+            stepX = -1;
+            sideDistX = (vars->rays[i].ray_X - floor(vars->rays[i].ray_X)) * deltaDistX;
+        } else {
+            stepX = 1;
+            sideDistX = (ceil(vars->rays[i].ray_X) - vars->rays[i].ray_X) * deltaDistX;
+        }
+
+        if (sin(vars->rays[i].rayAngle) < 0) {
+            stepY = -1;
+            sideDistY = (vars->rays[i].ray_Y - floor(vars->rays[i].ray_Y)) * deltaDistY;
+        } else {
+            stepY = 1;
+            sideDistY = (ceil(vars->rays[i].ray_Y) - vars->rays[i].ray_Y) * deltaDistY;
+        }
+
+        // DDA step
+        while (!mapHasWall(vars->rays[i].ray_X, vars->rays[i].ray_Y, vars)) {
+            if (sideDistX < sideDistY) {
+                sideDistX += deltaDistX;
+                vars->rays[i].ray_X += stepX * 0.4;
+                vars->rays[i].ray_side = (stepX == 1) ? 2 : 1; // 2: East, 1: West
+            } else {
+                sideDistY += deltaDistY;
+                vars->rays[i].ray_Y += stepY * 0.4;
+                vars->rays[i].ray_side = (stepY == 1) ? 3 : 4; // 3: South, 4: North
             }
-            else
-            {
-                stepX = 1;
-                sideDistX = (ceil(vars->rays[i].ray_X) - vars->rays[i].ray_X) * deltaDistX;
-            }
-            if (sin(vars->rays[i].rayAngle) < 0)
-            {
-                stepY = -1;
-                sideDistY = (vars->rays[i].ray_Y - floor(vars->rays[i].ray_Y)) * deltaDistY;
-            }
-            else
-            {
-                stepY = 1;
-                sideDistY = (ceil(vars->rays[i].ray_Y) - vars->rays[i].ray_Y) * deltaDistY;
-            }
-            // DDA step
-            while (!mapHasWall(vars->rays[i].ray_X, vars->rays[i].ray_Y, vars)) {
-                if (sideDistX < sideDistY) {
-                    sideDistX += deltaDistX;
-                    vars->rays[i].ray_X += stepX * 0.4;
-                    vars->rays[i].ray_side = (stepX == 1) ? 2 : 1;
-                } else {
-                    sideDistY += deltaDistY;
-                    vars->rays[i].ray_Y += stepY * 0.4;
-                    vars->rays[i].ray_side = (stepY == 1) ? 3 : 4; 
-                }
-            }
-        vars->rays[i].distance  = sqrtf(powf(vars->player->player_x - vars->rays[i].ray_X,2) + powf(vars->player->player_y - vars->rays[i].ray_Y,2)) 
-        * cos(rayAngle - vars->player->rotationAngle);
-        vars->rays[i].wall_h = (vars->tile_size / vars->rays[i].distance) * ((vars->window_width / 2) 
-        / tan(vars->fov_angle / 2));
+        }
+
+        vars->rays[i].distance = sqrtf(powf(vars->player->player_x - vars->rays[i].ray_X, 2) +
+                                       powf(vars->player->player_y - vars->rays[i].ray_Y, 2)) *
+                                 cos(rayAngle - vars->player->rotationAngle);
+        vars->rays[i].wall_h = (vars->tile_size / vars->rays[i].distance) *
+                               ((vars->window_width / 2) / tan(vars->fov_angle / 2));
         vars->rays[i].b_pix = (vars->window_height / 2) + (vars->rays[i].wall_h / 2);
         vars->rays[i].t_pix = (vars->window_height / 2) - (vars->rays[i].wall_h / 2);
-        if (vars->rays[i].b_pix > vars->window_height )
-		    vars->rays[i].b_pix = vars->window_height;
-	    if (vars->rays[i].t_pix < 0)
-		    vars->rays[i].t_pix = 0;
+        if (vars->rays[i].b_pix > vars->window_height)
+            vars->rays[i].b_pix = vars->window_height;
+        if (vars->rays[i].t_pix < 0)
+            vars->rays[i].t_pix = 0;
         render_wall(vars, i);
         i++;
     }

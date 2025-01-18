@@ -42,6 +42,20 @@ int init_values(t_init *vars, t_data *pars) {
     vars->fov_angle = (60 * (M_PI / 180));
     vars->num_rays = vars->window_width;
 
+
+    vars->textures[0] = mlx_xpm_file_to_image(vars->mlx, "blue.xpm", &vars->texture_width[0], &vars->texture_height[0]);
+    vars->textures[1] = mlx_xpm_file_to_image(vars->mlx, "green.xpm", &vars->texture_width[1], &vars->texture_height[1]);
+    vars->textures[2] = mlx_xpm_file_to_image(vars->mlx, "grisMfto7.xpm", &vars->texture_width[2], &vars->texture_height[2]);
+    vars->textures[3] = mlx_xpm_file_to_image(vars->mlx, "grisMghmo9.xpm", &vars->texture_width[3], &vars->texture_height[3]);
+
+    for (int i = 0; i < 4; i++) {
+        if (!vars->textures[i])
+            return (0); // Handle error if texture fails to load
+        vars->texture_data[i] = mlx_get_data_addr(vars->textures[i], &vars->texture_bpp[i], &vars->texture_line_size[i], &vars->texture_endian[i]);
+    }
+
+
+
     vars->rays = malloc(sizeof(t_rays) * vars->num_rays);
     if (!vars->rays)
         return (0);
