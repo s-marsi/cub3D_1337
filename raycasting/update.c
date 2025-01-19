@@ -59,15 +59,19 @@ void	draw_floor_ceiling(t_init *vars, int ray, int t_pix, int b_pix)
 void draw_wall(t_init *vars, int ray, int t_pix, int b_pix) {
     int tex_index = vars->rays[ray].ray_side - 1; // Map side determines the texture
     int wall_height = b_pix - t_pix;
-    int texture_x = (int)(vars->rays[ray].ray_X) % vars->tile_size;
+    int texture_x;
+    texture_x = (int)(vars->rays[ray].ray_X * vars->texture_width[tex_index] / vars->tile_size) % vars->texture_width[tex_index];
+    if (tex_index <= 1)
+        texture_x = (int)(vars->rays[ray].ray_Y * vars->texture_width[tex_index] / vars->tile_size) % vars->texture_width[tex_index];
+
     int texture_y;
     int color;
 
     for (int y = t_pix; y < b_pix; y++) {
         texture_y = ((y - t_pix) * vars->texture_height[tex_index]) / wall_height;
         color = *(unsigned int *)(vars->texture_data[tex_index]
-                + (texture_y * vars->texture_line_size[tex_index])
-                + (texture_x * (vars->texture_bpp[tex_index] / 8)));
+                    + (texture_y * vars->texture_line_size[tex_index])
+                    + (texture_x * (vars->texture_bpp[tex_index] / 8)));
         put_one_pixel(vars, ray, y, color);
     }
 }
@@ -122,17 +126,17 @@ void cast_Rays(t_init *vars) {
         }
 
         // DDA step
-        while (!mapHasWall(vars->rays[i].ray_X, vars->rays[i].ray_Y, vars)) {
+       while (!mapHasWall(vars->rays[i].ray_X, vars->rays[i].ray_Y, vars)) {
             if (sideDistX < sideDistY) {
                 sideDistX += deltaDistX;
-                vars->rays[i].ray_X += stepX * 0.4;
+                vars->rays[i].ray_X += stepX * 0.1; // Smaller step size for accuracy
                 vars->rays[i].ray_side = (stepX == 1) ? 2 : 1; // 2: East, 1: West
             } else {
                 sideDistY += deltaDistY;
-                vars->rays[i].ray_Y += stepY * 0.4;
+                vars->rays[i].ray_Y += stepY * 0.1; // Smaller step size for accuracy
                 vars->rays[i].ray_side = (stepY == 1) ? 3 : 4; // 3: South, 4: North
             }
-        }
+}
 
         vars->rays[i].distance = sqrtf(powf(vars->player->player_x - vars->rays[i].ray_X, 2) +
                                        powf(vars->player->player_y - vars->rays[i].ray_Y, 2)) *
