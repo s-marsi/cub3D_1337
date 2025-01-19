@@ -106,6 +106,7 @@ typedef struct s_init
     int texture_bpp[4];
     int texture_line_size[4];
     int texture_endian[4];
+
 }   t_init;
 
 char	*get_next_line(int fd);

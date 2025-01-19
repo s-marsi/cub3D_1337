@@ -23,6 +23,7 @@ static int handle_mouse_move(int x, int y, t_init *vars)
     int center_x = vars->window_width / 2;
     int delta_x = x - center_x;
     // // printf("center_x = %d | x = %d | delta-x = %d\n",center_x,x,delta_x);
+
     vars->player->rotationAngle += delta_x * vars->player->turnSpeed * 0.0005;
     return (0);
 }
