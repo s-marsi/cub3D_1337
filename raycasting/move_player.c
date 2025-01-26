@@ -6,12 +6,15 @@ void	update_player_rotation(t_init *vars)
 		* vars->player->turnSpeed;
 }
 
-int	is_collision(double newPlayerX, double newPlayerY, t_init *vars)
+int is_collision(double newPlayerX, double newPlayerY, t_init *vars)
 {
-	return (map_h_wall(newPlayerX, newPlayerY, vars) \
-		|| map_h_wall(newPlayerX + 1, newPlayerY, vars)
-		|| map_h_wall(newPlayerX, newPlayerY + 1, vars)
-		|| map_h_wall(newPlayerX + 1, newPlayerY + 1, vars));
+    double buffer;
+
+	buffer = 10.0;
+    return (map_h_wall(newPlayerX - buffer, newPlayerY - buffer, vars) ||
+            map_h_wall(newPlayerX + buffer, newPlayerY - buffer, vars) ||
+            map_h_wall(newPlayerX - buffer, newPlayerY + buffer, vars) ||
+            map_h_wall(newPlayerX + buffer, newPlayerY + buffer, vars));
 }
 
 void	update_player_position(t_init *vars, double new_px, double new_py)
@@ -31,18 +34,20 @@ void	refresh_window(t_init *vars)
 	render(vars);
 }
 
-int	ft_move_player(t_init *vars)
+int ft_move_player(t_init *vars)
 {
-	double	new_px;
-	double	new_py;
+    double new_px;
+    double new_py;
 
-	update_player_rotation(vars);
-	calc_np_position(vars, &new_px, &new_py);
-	if (!is_collision(new_px, new_py, vars))
-	{
-		update_player_position(vars, new_px, new_py);
-		refresh_window(vars);
-	}
-	cast_rays(vars);
-	return (0);
+    update_player_rotation(vars);
+    calc_np_position(vars, &new_px, &new_py);
+    if (!is_collision(new_px, new_py, vars))
+    {
+        update_player_position(vars, new_px, new_py);
+        refresh_window(vars);
+    }
+
+    cast_rays(vars);
+
+    return (0);
 }
