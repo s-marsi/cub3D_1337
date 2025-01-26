@@ -98,16 +98,38 @@ typedef struct s_init
     int         color_floor;
     int         color_ceiling;
     t_data      *data;
-
-    void *textures[4]; // Pointers to the wall textures (e.g., North, South, East, West)
+    void *textures[4];
     char *texture_data[4];
     int texture_width[4];
     int texture_height[4];
     int texture_bpp[4];
     int texture_line_size[4];
     int texture_endian[4];
-
+	int	color;
 }   t_init;
+
+typedef struct s_rect
+{
+	int x;
+	int y;
+	int width;
+	int height;
+	int color;
+	int		i;
+	int		j;
+	int		a;
+	int		b;
+} t_rect;
+
+typedef struct s_dda
+{
+    float deltaDistX;
+    float deltaDistY;
+    int stepX;
+    int stepY;
+    float sideDistX;
+    float sideDistY;
+} t_dda;
 
 char	*get_next_line(int fd);
 char	*ft_strjoin_next(char *s1, char *s2);
@@ -150,13 +172,25 @@ void	adjust_map_width(t_data *data);
 void    ft_print(t_data *data, char **test);
 
 //-------------------
-int get_position_x(char **map);
-int get_position_y(char **map);
-void init_player(t_init *vars);
-void    handle_keys(t_init *vars);
-void    update(t_init *vars);
-void render(t_init *vars);
-size_t ft_height(t_data *data);
-size_t ft_max_width(t_data *data);
+int		get_position_x(char **map);
+int		get_position_y(char **map);
+size_t	ft_height(t_data *data);
+size_t	ft_max_width(t_data *data);
+void	init_player(t_init *vars);
+void	handle_keys(t_init *vars);
+void	update(t_init *vars);
+void	render(t_init *vars);
+size_t	ft_height(t_data *data);
+size_t	ft_max_width(t_data *data);
+void	cast_rays(t_init *vars);
+int		ft_move_player(t_init *vars);
+void	render_wall(t_init *vars, int ray);
+int		map_h_wall(float x,float y, t_init *vars);
+void	draw_wall(t_init *vars, int ray, int t_pix, int b_pix);
+void	draw_floor_ceiling(t_init *vars, int ray, int t_pix, int b_pix);
+void	put_one_pixel(t_init *vars, int x, int y, int color);
+void	initialize_ray(t_init *vars, size_t i, float rayAngle);
+void	perform_dda(t_init *vars, size_t i);
+void	calc_np_position(t_init *vars, double *newPlayerX, double *newPlayerY);
 
 #endif
