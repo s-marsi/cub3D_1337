@@ -109,6 +109,15 @@ typedef struct s_init
 
 }   t_init;
 
+typedef struct s_rect
+{
+	int x;
+	int y;
+	int width;
+	int height;
+	int color;
+} t_rect;
+
 char	*get_next_line(int fd);
 char	*ft_strjoin_next(char *s1, char *s2);
 char	*ft_strchr(const char *s, int c);
@@ -158,5 +167,12 @@ void    update(t_init *vars);
 void render(t_init *vars);
 size_t ft_height(t_data *data);
 size_t ft_max_width(t_data *data);
+void cast_Rays(t_init *vars);
+int	ft_move_player(t_init *vars);
+void	render_wall(t_init *vars, int ray);
+int mapHasWall(float x,float y, t_init *vars);
+void draw_wall(t_init *vars, int ray, int t_pix, int b_pix);
+void	draw_floor_ceiling(t_init *vars, int ray, int t_pix, int b_pix);
+void	put_one_pixel(t_init *vars, int x, int y, int color);
 
 #endif

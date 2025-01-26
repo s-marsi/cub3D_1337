@@ -43,7 +43,7 @@ int init_values(t_init *vars, t_data *pars) {
     vars->num_rays = vars->window_width;
 
 
-    vars->textures[0] = mlx_xpm_file_to_image(vars->mlx, "textures/1.xpm", &vars->texture_width[0], &vars->texture_height[0]);
+    vars->textures[0] = mlx_xpm_file_to_image(vars->mlx, "zlij.xpm", &vars->texture_width[0], &vars->texture_height[0]);
     vars->textures[1] = mlx_xpm_file_to_image(vars->mlx, "textures/2.xpm", &vars->texture_width[1], &vars->texture_height[1]);
     vars->textures[2] = mlx_xpm_file_to_image(vars->mlx, "textures/3.xpm", &vars->texture_width[2], &vars->texture_height[2]);
     vars->textures[3] = mlx_xpm_file_to_image(vars->mlx, "textures/4.xpm", &vars->texture_width[3], &vars->texture_height[3]);
