@@ -21,7 +21,9 @@ int	initialize_window_and_image(t_init *vars, t_data *pars)
 	vars->map = pars->mapStructure;
 	vars->map_rows_num = ft_height(pars);
 	vars->map_cols_num = ft_max_width(pars);
+	vars->num_rays = vars->window_width;
 	vars->fov_angle = (60 * (M_PI / 180));
+
 	return (1);
 }
 
@@ -31,21 +33,23 @@ int	initialize_game_variables(t_init *vars)
 
 	vars->num_rays = vars->window_width;
 	vars->textures[0] = mlx_xpm_file_to_image(vars->mlx, \
-		"zlij.xpm", &vars->texture_width[0], &vars->texture_height[0]);
+		"grisMghmo9.xpm", &vars->texture_width[0], &vars->texture_height[0]);
 	vars->textures[1] = mlx_xpm_file_to_image(vars->mlx, \
-		"textures/2.xpm", &vars->texture_width[1], &vars->texture_height[1]);
+		"1.xpm", &vars->texture_width[1], &vars->texture_height[1]);
 	vars->textures[2] = mlx_xpm_file_to_image(vars->mlx, \
-		"textures/3.xpm", &vars->texture_width[2], &vars->texture_height[2]);
+		"2.xpm", &vars->texture_width[2], &vars->texture_height[2]);
 	vars->textures[3] = mlx_xpm_file_to_image(vars->mlx, \
-		"textures/4.xpm", &vars->texture_width[3], &vars->texture_height[3]);
+		"3.xpm", &vars->texture_width[3], &vars->texture_height[3]);
 	i = 0;
 	while (i < 4)
 	{
 		if (!vars->textures[i])
 			return (0);
-		vars->texture_data[i] = mlx_get_data_addr(vars->textures[i], \
-		&vars->texture_bpp[i], &vars->texture_line_size[i], \
-			&vars->texture_endian[i]);
+		vars->texture_data[i] = mlx_get_data_addr(vars->textures[i],
+                                          &vars->texture_bpp[i],
+                                          &vars->texture_line_size[i],
+                                          &vars->texture_endian[i]);
+
 		i++;
 	}
 	vars->rays = malloc(sizeof(t_rays) * vars->num_rays);

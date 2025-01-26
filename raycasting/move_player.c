@@ -10,7 +10,7 @@ int is_collision(double newPlayerX, double newPlayerY, t_init *vars)
 {
     double buffer;
 
-	buffer = 10.0;
+	buffer = 5.0;
     return (map_h_wall(newPlayerX - buffer, newPlayerY - buffer, vars) ||
             map_h_wall(newPlayerX + buffer, newPlayerY - buffer, vars) ||
             map_h_wall(newPlayerX - buffer, newPlayerY + buffer, vars) ||
