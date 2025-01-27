@@ -23,7 +23,6 @@ int	initialize_window_and_image(t_init *vars, t_data *pars)
 	vars->map_cols_num = ft_max_width(pars);
 	vars->num_rays = vars->window_width;
 	vars->fov_angle = (60 * (M_PI / 180));
-
 	return (1);
 }
 

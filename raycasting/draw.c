@@ -66,7 +66,7 @@ void	render_map(t_init *vars)
 
 void	render(t_init *vars)
 {
-	render_map(vars);
-	render_player(vars, 0);
+	// render_map(vars);
+	// render_player(vars, 0);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->mlx_img, 0, 0);
 }

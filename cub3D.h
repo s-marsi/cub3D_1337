@@ -131,6 +131,17 @@ typedef struct s_dda
     float sideDistY;
 } t_dda;
 
+typedef struct s_tex
+{
+    int                    width;
+    int                    height;
+    char                *data;
+    void                *img;
+    int                    bits_per_pixe;
+    int                    size_line;
+    int                    endian;
+}                        t_tex;
+
 char	*get_next_line(int fd);
 char	*ft_strjoin_next(char *s1, char *s2);
 char	*ft_strchr(const char *s, int c);
@@ -145,6 +156,7 @@ typedef enum    e_textures
     F
 }   t_textures;
 
+void	draw_walls_badrv(t_init *vars, int ray, int t_pix, int b_pix);
 void    parsing_part(char *av[], t_data *data);
 void    parse_map_file(char *name, t_data *data);
 void    valid_map(char *name, t_data *data);

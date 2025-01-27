@@ -4,12 +4,21 @@ void	draw_floor_ceiling(t_init *vars, int ray, int t_pix, int b_pix)
 {
 	int		i;
 
-	i = t_pix;
-	while (i < (int)vars->window_height)
-		put_one_pixel(vars, ray, i++, vars->data->floor_color);
 	i = 0;
+	while (i < t_pix)
+		put_one_pixel(vars, ray, i++, 0xFF0000 );
+	i = b_pix;
+	while (i < (int)vars->window_height)
+		put_one_pixel(vars, ray, i++, 0xFFFFFF);
+}
+
+void	draw_walls_badrv(t_init *vars, int ray, int t_pix, int b_pix)
+{
+	int		i;
+
+	i = t_pix;
 	while (i < b_pix)
-		put_one_pixel(vars, ray, i++, vars->data->ceiling_color);
+		put_one_pixel(vars, ray, i++, 0x0000FF );
 }
 
 int	calculate_texture_x(t_init *vars, int ray, int tex_index)

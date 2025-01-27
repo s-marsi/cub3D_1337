@@ -36,5 +36,5 @@ void	init_player(t_init *vars)
 	vars->player->walkDirection_l_r = 0;
 	vars->player->rotationAngle = ft_rotate_angle(player_x, player_y, vars);
 	vars->player->walkSpeed = 4;
-	vars->player->turnSpeed = 2 * (M_PI / 180);
+	vars->player->turnSpeed = 4 * (M_PI / 180);
 }
