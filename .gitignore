@@ -19,6 +19,8 @@
 # Libraries
 *.lib
 *.a
+!libmlx_Linux.a
+!libmlx.a
 *.la
 *.lo
 
