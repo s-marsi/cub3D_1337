@@ -32,13 +32,13 @@ int	initialize_game_variables(t_init *vars)
 
 	vars->num_rays = vars->window_width;
 	vars->textures[0] = mlx_xpm_file_to_image(vars->mlx, \
-		"grisMghmo9.xpm", &vars->texture_width[0], &vars->texture_height[0]);
+		vars->data->texture_west, &vars->texture_width[0], &vars->texture_height[0]);
 	vars->textures[1] = mlx_xpm_file_to_image(vars->mlx, \
-		"1.xpm", &vars->texture_width[1], &vars->texture_height[1]);
+		vars->data->texture_north, &vars->texture_width[1], &vars->texture_height[1]);
 	vars->textures[2] = mlx_xpm_file_to_image(vars->mlx, \
-		"2.xpm", &vars->texture_width[2], &vars->texture_height[2]);
+		vars->data->texture_east, &vars->texture_width[2], &vars->texture_height[2]);
 	vars->textures[3] = mlx_xpm_file_to_image(vars->mlx, \
-		"3.xpm", &vars->texture_width[3], &vars->texture_height[3]);
+		vars->data->texture_south, &vars->texture_width[3], &vars->texture_height[3]);
 	i = 0;
 	while (i < 4)
 	{
@@ -76,6 +76,14 @@ void	raycasting(t_data *data)
 	if (!init_values(&vars, data))
 	{
 		printf("ERROR in initilization");
+		mlx_destroy_image(vars.mlx, vars.mlx_img);
+		mlx_clear_window(vars.mlx, vars.win);
+		mlx_destroy_window(vars.mlx, vars.win);
+		mlx_destroy_display(vars.mlx);
+		ft_free(data->fullMapData);
+		ft_free(data->mapStructure);
+		ft_free(data->mapStructureClone);
+		(free(vars.rays), free(vars.mlx), exit(0));
 		exit(1);
 	}
 	init_player(&vars);

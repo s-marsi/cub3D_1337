@@ -48,7 +48,6 @@ void	check_bad_charactere(t_data *data, char **map)
 		{
 			if (!in_array(map[i][j], "01NSEW \t"))
 			{
-				printf("---------[%c]--[%s]-------------\n", map[i][j], map[i]);
 				print_error(data, "Bad character in the map.");
 			}
 			if (in_array(map[i][j], "NSEW"))
