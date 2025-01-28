@@ -70,7 +70,7 @@ void	check_all_identifiers(t_data *data)
 
 void	parsing_part(char *av[], t_data *data)
 {
-	// map extension is .cub
+	// map extension is .cub 
 	valid_map_name(av[1]);
 	// valid that the map exist
 	valid_map_path(av[1]);
