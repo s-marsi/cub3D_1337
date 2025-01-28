@@ -1,5 +1,12 @@
 #include "cub3D.h"
 
+static void	free_data(t_data *data)
+{
+	ft_free(data->fullMapData);
+	ft_free(data->mapStructure);
+    ft_free(data->mapStructureClone);
+}
+
 void	initialize_data(t_data *data)
 {
 	int	i;
@@ -21,13 +28,6 @@ void	initialize_data(t_data *data)
 		data->counters[i] = 0;
 		i++;
 	}
-}
-
-static void	free_data(t_data *data)
-{
-	ft_free(data->fullMapData);
-	ft_free(data->mapStructure);
-    ft_free(data->mapStructureClone);
 }
 
 int main(int ac, char *av[])
