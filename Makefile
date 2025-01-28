@@ -17,7 +17,7 @@ SOUFAYNE_FILES  =  main.c \
 
 AMINE_FILES = raycasting/start.c raycasting/init_player.c raycasting/get_position.c \
 		raycasting/handle_keys.c raycasting/update.c raycasting/cast_rays.c raycasting/move_player.c raycasting/draw_wall.c \
-		raycasting/cast_utils.c raycasting/move_utils.c
+		raycasting/cast_utils.c raycasting/move_utils.c raycasting/free_resources.c
 
 FILES_O = $(SOUFAYNE_FILES:.c=.o) $(AMINE_FILES:.c=.o)
 

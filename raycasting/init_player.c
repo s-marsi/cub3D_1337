@@ -23,7 +23,8 @@ void	init_player(t_init *vars)
 	player_x = get_position_x(vars->map);
 	if (player_x == -1 || player_y == -1)
 	{
-		printf("Error: Player position not found in the map.\n");
+		ft_putendl_fd("Error\n: Player position not found in the map.\n", 2);
+		free_resources(vars);
 		exit(1);
 	}
 	vars->player->player_x = (player_x * vars->tile_size);
