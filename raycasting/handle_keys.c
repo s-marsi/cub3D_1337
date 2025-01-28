@@ -31,7 +31,7 @@ int	handle_mouse_move(int x, int y, t_init *vars)
 
 int	handle_key_press(int keycode, t_init *vars)
 {
-	if (keycode == 65307 || keycode == 57)
+	if (keycode == 65307)
 	{
 		mlx_destroy_image(vars->mlx, vars->mlx_img);
 		mlx_clear_window(vars->mlx, vars->win);
@@ -57,9 +57,18 @@ int	handle_key_press(int keycode, t_init *vars)
 	return (0);
 }
 
+static int handle_x_click(t_init *vars)
+{
+    mlx_destroy_window(vars->mlx, vars->win);
+	free(vars->mlx);
+	exit(0);
+	return (0);
+}
+
 void	handle_keys(t_init *vars)
 {
 	mlx_hook(vars->win, 2, 1L << 0, handle_key_press, vars);
 	mlx_hook(vars->win, 3, 1L << 1, handle_key_up, vars);
 	mlx_hook(vars->win, 6, 1L << 6, handle_mouse_move, vars);
+	mlx_hook(vars->win, 17, 0, handle_x_click, vars);
 }

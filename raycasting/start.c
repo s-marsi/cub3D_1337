@@ -88,7 +88,7 @@ void	raycasting(t_data *data)
 	}
 	init_player(&vars);
 	handle_keys(&vars);
-	render(&vars);
+	mlx_put_image_to_window(vars.mlx, vars.win, vars.mlx_img, 0, 0);
 	update(&vars);
 	mlx_loop(vars.mlx);
 	mlx_destroy_window(vars.mlx, vars.win);

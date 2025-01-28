@@ -156,7 +156,6 @@ typedef enum    e_textures
     F
 }   t_textures;
 
-void	draw_walls_badrv(t_init *vars, int ray, int t_pix, int b_pix);
 void    parsing_part(char *av[], t_data *data);
 void    parse_map_file(char *name, t_data *data);
 void    valid_map(char *name, t_data *data);
@@ -191,7 +190,6 @@ size_t	ft_max_width(t_data *data);
 void	init_player(t_init *vars);
 void	handle_keys(t_init *vars);
 void	update(t_init *vars);
-void	render(t_init *vars);
 size_t	ft_height(t_data *data);
 size_t	ft_max_width(t_data *data);
 void	cast_rays(t_init *vars);

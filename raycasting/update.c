@@ -44,7 +44,7 @@ static double    get_x_render(t_init *vars, int ray)
             * vars->texture_width[3];
     return (x);
 }
-static unsigned int    get_color_v1(t_init *vars, int x, int y,int index)
+static unsigned int    my_get_color(t_init *vars, int x, int y,int index)
 {
     int                offset;
     unsigned int    color;
@@ -71,8 +71,7 @@ static double    get_y_render(t_init *vars, double n, int ray)
     return (y);
 }
 
-
-static void    render_wall_v1(t_init *vars, int ray)
+void	render_wall(t_init *vars, int ray)
 {
     unsigned int    color;
     double            x;
@@ -88,27 +87,16 @@ static void    render_wall_v1(t_init *vars, int ray)
         if (vars->rays[ray].wall_h >= vars->window_height)
             n += (vars->rays[ray].wall_h - vars->window_height) / 2;
         if (vars->rays[ray].ray_side == 1)
-            color = get_color_v1(vars, x, get_y_render(vars, n, ray),0);
+            color = my_get_color(vars, x, get_y_render(vars, n, ray),0);
         else if (vars->rays[ray].ray_side == 2)
-            color = get_color_v1(vars, x, get_y_render(vars, n, ray),2);
+            color = my_get_color(vars, x, get_y_render(vars, n, ray),2);
         else if (vars->rays[ray].ray_side == 3)
-            color = get_color_v1(vars, x, get_y_render(vars, n, ray),1);
+            color = my_get_color(vars, x, get_y_render(vars, n, ray),1);
         else if (vars->rays[ray].ray_side == 4)
-            color = get_color_v1(vars, x, get_y_render(vars, n, ray),3);
+            color = my_get_color(vars, x, get_y_render(vars, n, ray),3);
         put_one_pixel(vars, ray, i, color);
         i++;
     }
-}
-
-
-
-
-void	render_wall(t_init *vars, int ray)
-{
-	
-	render_wall_v1(vars,ray);
-	// draw_wall(vars, ray, vars->rays[ray].t_pix, vars->rays[ray].b_pix);
-	// draw_walls_badrv(vars, ray, vars->rays[ray].t_pix, vars->rays[ray].b_pix);
 }
 
 void	update(t_init *vars)
