@@ -100,29 +100,7 @@ static void    render_wall_v1(t_init *vars, int ray)
     }
 }
 
-// void	draw_wall(t_init *vars, int ray, int t_pix, int b_pix)
-// {
-// 	int	tex_index;
-// 	int	wall_height;
-// 	int	texture_x;
-// 	int	texture_y;
-// 	int	y;
 
-// 	tex_index = vars->rays[ray].ray_side - 1;
-// 	wall_height = b_pix - t_pix;
-// 	texture_x = calculate_texture_x(vars, ray, tex_index);
-// 	y = t_pix;
-// 	while (y < b_pix)
-// 	{
-// 		texture_y = calculate_texture_y(y, t_pix, wall_height, \
-// 			vars->texture_height[tex_index]);
-// 		vars->color = *(unsigned int *)(vars->texture_data[tex_index]
-// 				+ (texture_y * vars->texture_line_size[tex_index])
-// 				+ (texture_x * (vars->texture_bpp[tex_index] / 8)));
-// 		put_one_pixel(vars, ray, y, vars->color);
-// 		y++;
-// 	}
-// }
 
 
 void	render_wall(t_init *vars, int ray)

@@ -9,7 +9,6 @@ void	ft_print(t_data *data, char **test)
 		return ;
 	while (test[i])
 	{
-		printf("%s\n", test[i]);
 		i++;
 	}
 	// printf("*%s*\n", data->texture_east);
