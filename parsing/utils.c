@@ -16,12 +16,12 @@ void	print_error(t_data *data, char *msg)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(msg, 2);
-	if (data->fullMapData)
-		ft_free(data->fullMapData);
-	if (data->mapStructure)
-		ft_free(data->mapStructure);
-	if (data->mapStructureClone)
-		ft_free(data->mapStructureClone);
+	if (data->full_map_data)
+		ft_free(data->full_map_data);
+	if (data->map_structure)
+		ft_free(data->map_structure);
+	if (data->map_structure_clone)
+		ft_free(data->map_structure_clone);
 	exit (1);
 }
 

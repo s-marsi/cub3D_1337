@@ -16,8 +16,8 @@ void	free_resources(t_init *vars)
 	mlx_clear_window(vars->mlx, vars->win);
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
-	ft_free(vars->data->fullMapData);
-	ft_free(vars->data->mapStructure);
-	ft_free(vars->data->mapStructureClone);
+	ft_free(vars->data->full_map_data);
+	ft_free(vars->data->map_structure);
+	ft_free(vars->data->map_structure_clone);
 	(free(vars->rays), free(vars->mlx), exit(0));
 }

@@ -54,9 +54,9 @@ void	check_empty_map(t_data *data)
 
 	i = 0;
 	line = NULL;
-	while (data && data->fullMapData && data->fullMapData[i])
+	while (data && data->full_map_data && data->full_map_data[i])
 	{
-		line = data->fullMapData[i];
+		line = data->full_map_data[i];
 		if (!line)
 			return ;
 		while (*line && (*line <= 32 || *line == '\n'))
@@ -87,7 +87,7 @@ void	parsing_part(char *av[], t_data *data)
 	parse_map_file(av[1], data);
 	get_texture_config(data);
 	get_color(data);
-	if (!data->mapStructureClone)
+	if (!data->map_structure_clone)
 		print_error(data, "Empty Map.");
 	textures_extension(data, data->texture_north);
 	textures_extension(data, data->texture_south);

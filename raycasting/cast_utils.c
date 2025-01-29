@@ -1,82 +1,76 @@
 #include "../cub3D.h"
 
-void	initialize_ray(t_init *vars, size_t i, float rayAngle)
+float	calculate_delta_dist_x(float ray_angle)
 {
-	vars->rays[i].ray_X = vars->player->player_x;
-	vars->rays[i].ray_Y = vars->player->player_y;
-	vars->rays[i].rayAngle = rayAngle;
-}
-
-float	calculate_delta_dist_x(float rayAngle)
-{
-	if (cos(rayAngle) == 0)
+	if (cos(ray_angle) == 0)
 		return (INFINITY);
 	else
-		return (fabs(1 / cos(rayAngle)));
+		return (fabs(1 / cos(ray_angle)));
 }
 
-float	calculate_delta_dist_y(float rayAngle)
+float	calculate_delta_dist_y(float ray_angle)
 {
-	if (sin(rayAngle) == 0)
+	if (sin(ray_angle) == 0)
 		return (INFINITY);
 	else
-		return (fabs(1 / sin(rayAngle)));
+		return (fabs(1 / sin(ray_angle)));
 }
 
 void	initialize_step_and_side_dist(t_init *vars, size_t i, t_dda *dda)
 {
-	if (cos(vars->rays[i].rayAngle) < 0)
+	if (cos(vars->rays[i].ray_angle) < 0)
 	{
-		dda->stepX = -1;
-		dda->sideDistX = (vars->rays[i].ray_X
-				- floor(vars->rays[i].ray_X)) * dda->deltaDistX;
+		dda->step_x = -1;
+		dda->side_dist_x = (vars->rays[i].ray_x
+				- floor(vars->rays[i].ray_x)) * dda->delta_dist_x;
 	}
 	else
 	{
-		dda->stepX = 1;
-		dda->sideDistX = (ceil(vars->rays[i].ray_X)
-				- vars->rays[i].ray_X) * dda->deltaDistX;
+		dda->step_x = 1;
+		dda->side_dist_x = (ceil(vars->rays[i].ray_x)
+				- vars->rays[i].ray_x) * dda->delta_dist_x;
 	}
-	if (sin(vars->rays[i].rayAngle) < 0)
+	if (sin(vars->rays[i].ray_angle) < 0)
 	{
-		dda->stepY = -1;
-		dda->sideDistY = (vars->rays[i].ray_Y
-				- floor(vars->rays[i].ray_Y)) * dda->deltaDistY;
+		dda->step_y = -1;
+		dda->side_dist_y = (vars->rays[i].ray_y
+				- floor(vars->rays[i].ray_y)) * dda->delta_dist_y;
 	}
 	else
 	{
-		dda->stepY = 1;
-		dda->sideDistY = (ceil(vars->rays[i].ray_Y)
-				- vars->rays[i].ray_Y) * dda->deltaDistY;
+		dda->step_y = 1;
+		dda->side_dist_y = (ceil(vars->rays[i].ray_y)
+				- vars->rays[i].ray_y) * dda->delta_dist_y;
 	}
+}
+
+int	check_step(int step_x, int side1, int side2)
+{
+	if (step_x == 1)
+		return (side1);
+	return (side2);
 }
 
 void	perform_dda(t_init *vars, size_t i)
 {
 	t_dda	dda;
 
-	dda.deltaDistX = calculate_delta_dist_x(vars->rays[i].rayAngle);
-	dda.deltaDistY = calculate_delta_dist_y(vars->rays[i].rayAngle);
+	dda.delta_dist_x = calculate_delta_dist_x(vars->rays[i].ray_angle);
+	dda.delta_dist_y = calculate_delta_dist_y(vars->rays[i].ray_angle);
 	initialize_step_and_side_dist(vars, i, &dda);
-	while (!map_h_wall(vars->rays[i].ray_X, vars->rays[i].ray_Y, vars))
+	while (!map_h_wall(vars->rays[i].ray_x, vars->rays[i].ray_y, vars))
 	{
-		if (dda.sideDistX < dda.sideDistY)
+		if (dda.side_dist_x < dda.side_dist_y)
 		{
-			dda.sideDistX += dda.deltaDistX;
-			vars->rays[i].ray_X += dda.stepX * 0.1;
-			if (dda.stepX == 1)
-				vars->rays[i].ray_side = 2;
-			else
-				vars->rays[i].ray_side = 1;
+			dda.side_dist_x += dda.delta_dist_x;
+			vars->rays[i].ray_x += dda.step_x * 0.1;
+			vars->rays[i].ray_side = check_step(dda.step_x, 2, 1);
 		}
 		else
 		{
-			dda.sideDistY += dda.deltaDistY;
-			vars->rays[i].ray_Y += dda.stepY * 0.1;
-			if (dda.stepY == 1)
-				vars->rays[i].ray_side = 3;
-			else
-				vars->rays[i].ray_side = 4;
+			dda.side_dist_y += dda.delta_dist_y;
+			vars->rays[i].ray_y += dda.step_y * 0.1;
+			vars->rays[i].ray_side = check_step(dda.step_y, 3, 4);
 		}
 	}
 }

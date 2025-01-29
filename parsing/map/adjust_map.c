@@ -52,10 +52,10 @@ void	adjust_map_width(t_data *data)
 
 	int (i), (j), (len);
 	i = 0;
-	len = get_max_len(data->mapStructure);
-	while (data->mapStructure && data->mapStructure[i])
+	len = get_max_len(data->map_structure);
+	while (data->map_structure && data->map_structure[i])
 	{
-		map = data->mapStructure[i];
+		map = data->map_structure[i];
 		j = 0;
 		while (map[j])
 		{
@@ -64,7 +64,7 @@ void	adjust_map_width(t_data *data)
 			j++;
 		}
 		if ((int)ft_strlen(map) > 0 && (int) ft_strlen(map) < len)
-			data->mapStructure[i] = fill_line_with_two(map, len);
+			data->map_structure[i] = fill_line_with_two(map, len);
 		i++;
 	}
 }

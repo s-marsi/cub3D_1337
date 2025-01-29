@@ -2,18 +2,18 @@
 
 static void	free_data(t_data *data)
 {
-	ft_free(data->fullMapData);
-	ft_free(data->mapStructure);
-    ft_free(data->mapStructureClone);
+	ft_free(data->full_map_data);
+	ft_free(data->map_structure);
+    ft_free(data->map_structure_clone);
 }
 
 void	initialize_data(t_data *data)
 {
 	int	i;
 
-	data->fullMapData = NULL;
-	data->mapStructure = NULL;
-	data->mapStructureClone = NULL;
+	data->full_map_data = NULL;
+	data->map_structure = NULL;
+	data->map_structure_clone = NULL;
 	data->texture_color = NULL;
 	data->texture_east = NULL;
 	data->texture_fcolor = NULL;
@@ -34,8 +34,8 @@ int main(int ac, char *av[])
 {
     t_data  data;
 
-    data.fullMapData = NULL;
-    data.mapStructure = NULL;
+    data.full_map_data = NULL;
+    data.map_structure = NULL;
     if (ac != 2)
     {
 		ft_putendl_fd("Error", 2);
@@ -45,7 +45,7 @@ int main(int ac, char *av[])
     initialize_data(&data);
     parsing_part(av, &data);
     raycasting(&data);
-    // ft_print(&data, data.mapStructure);
+    // ft_print(&data, data.map_structure);
 	free_data(&data);
     return (0);
 }

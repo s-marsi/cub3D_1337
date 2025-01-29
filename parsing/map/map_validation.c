@@ -36,10 +36,10 @@ void	check_empty_line_map(t_data *data)
 	flag = 0;
 	if (!data)
 		return ;
-	while (data->mapStructureClone[i])
+	while (data->map_structure_clone[i])
 	{
 		j = 0;
-		line = data->mapStructureClone[i];
+		line = data->map_structure_clone[i];
 		while (line[j] && in_array(line[j], " \t"))
 			j++;
 		if (line[j] && line[j] == '\n')
@@ -59,14 +59,14 @@ void	check_map(t_data *data)
 	char	*line;
 
 	int (i), (j);
-	if (!data || !data->mapStructureClone)
+	if (!data || !data->map_structure_clone)
 		return ;
 	i = 0;
 	check_empty_line_map(data);
-	while (data->mapStructureClone[i])
+	while (data->map_structure_clone[i])
 	{
 		j = 0;
-		line = data->mapStructureClone[i];
+		line = data->map_structure_clone[i];
 		while (line[j])
 		{
 			if (!in_array(line[j], "0 1NSEW\n"))

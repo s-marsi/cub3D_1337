@@ -93,9 +93,9 @@ void	get_texture_config(t_data *data)
 	int		i;
 
 	i = 0;
-	while (data->fullMapData && data->fullMapData[i])
+	while (data->full_map_data && data->full_map_data[i])
 	{
-		line = data->fullMapData[i];
+		line = data->full_map_data[i];
 		while (*line && is_withspace(*line))
 			line++;
 		if (!ft_strncmp(line, "NO", 2))

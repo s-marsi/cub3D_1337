@@ -1,11 +1,18 @@
 #include "../cub3D.h"
 
-void	calculate_ray_distance(t_init *vars, size_t i, float rayAngle)
+void	initialize_ray(t_init *vars, size_t i, float ray_angle)
+{
+	vars->rays[i].ray_x = vars->player->player_x;
+	vars->rays[i].ray_y = vars->player->player_y;
+	vars->rays[i].ray_angle = ray_angle;
+}
+
+void	calculate_ray_distance(t_init *vars, size_t i, float ray_angle)
 {
 	vars->rays[i].distance = sqrtf(powf(vars->player->player_x
-				- vars->rays[i].ray_X, 2)
-			+ powf(vars->player->player_y - vars->rays[i].ray_Y, 2))
-		* cos(rayAngle - vars->player->rotationAngle);
+				- vars->rays[i].ray_x, 2)
+			+ powf(vars->player->player_y - vars->rays[i].ray_y, 2))
+		* cos(ray_angle - vars->player->rotation_angle);
 }
 
 void	calculate_wall_height(t_init *vars, size_t i)
@@ -31,7 +38,7 @@ void	cast_rays(t_init *vars)
 	size_t	i;
 	float	ray_angle;
 
-	ray_angle = vars->player->rotationAngle - (30 * M_PI / 180);
+	ray_angle = vars->player->rotation_angle - (30 * M_PI / 180);
 	i = 0;
 	while (i < vars->num_rays)
 	{

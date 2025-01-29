@@ -18,7 +18,7 @@ int	initialize_window_and_image(t_init *vars, t_data *pars)
 	vars->data_img = mlx_get_data_addr(vars->mlx_img, \
 		&vars->bits_per_pixel, &vars->size_line, &vars->endian);
 	vars->tile_size = 30;
-	vars->map = pars->mapStructure;
+	vars->map = pars->map_structure;
 	vars->map_rows_num = ft_height(pars);
 	vars->map_cols_num = ft_max_width(pars);
 	vars->num_rays = vars->window_width;
@@ -26,19 +26,28 @@ int	initialize_window_and_image(t_init *vars, t_data *pars)
 	return (1);
 }
 
+void	initialize_textures(t_init *vars)
+{
+	vars->textures[0] = mlx_xpm_file_to_image(vars->mlx, \
+		vars->data->texture_west, \
+		&vars->texture_width[0], &vars->texture_height[0]);
+	vars->textures[1] = mlx_xpm_file_to_image(vars->mlx, \
+		vars->data->texture_north, \
+		&vars->texture_width[1], &vars->texture_height[1]);
+	vars->textures[2] = mlx_xpm_file_to_image(vars->mlx, \
+		vars->data->texture_east, \
+		&vars->texture_width[2], &vars->texture_height[2]);
+	vars->textures[3] = mlx_xpm_file_to_image(vars->mlx, \
+		vars->data->texture_south, \
+		&vars->texture_width[3], &vars->texture_height[3]);
+}
+
 int	initialize_game_variables(t_init *vars)
 {
 	int		i;
 
 	vars->num_rays = vars->window_width;
-	vars->textures[0] = mlx_xpm_file_to_image(vars->mlx, \
-		vars->data->texture_west, &vars->texture_width[0], &vars->texture_height[0]);
-	vars->textures[1] = mlx_xpm_file_to_image(vars->mlx, \
-		vars->data->texture_north, &vars->texture_width[1], &vars->texture_height[1]);
-	vars->textures[2] = mlx_xpm_file_to_image(vars->mlx, \
-		vars->data->texture_east, &vars->texture_width[2], &vars->texture_height[2]);
-	vars->textures[3] = mlx_xpm_file_to_image(vars->mlx, \
-		vars->data->texture_south, &vars->texture_width[3], &vars->texture_height[3]);
+	initialize_textures(vars);
 	i = 0;
 	while (i < 4)
 	{
@@ -49,8 +58,8 @@ int	initialize_game_variables(t_init *vars)
 			free_resources(vars);
 		}
 		vars->texture_data[i] = mlx_get_data_addr(vars->textures[i],
-            &vars->texture_bpp[i],&vars->texture_line_size[i],
-					&vars->texture_endian[i]);
+				&vars->texture_bpp[i], &vars->texture_line_size[i],
+				&vars->texture_endian[i]);
 		i++;
 	}
 	vars->rays = malloc(sizeof(t_rays) * vars->num_rays);

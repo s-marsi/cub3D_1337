@@ -69,8 +69,8 @@ void	parse_map_file(char *name, t_data *data)
 		buf = get_next_line(fd);
 	}
 	close(fd);
-	data->fullMapData = my_split(map, '\n');
-	if (data && (!data->fullMapData || !data->fullMapData[0]))
+	data->full_map_data = my_split(map, '\n');
+	if (data && (!data->full_map_data || !data->full_map_data[0]))
 	{
 		ft_putendl_fd("Error", 2);
 		ft_putstr_fd("Empty File.\n", 2);
@@ -83,17 +83,17 @@ void	get_map(t_data *data, int i)
 {
 	char	*map;
 
-	if (!data || !data->fullMapData)
+	if (!data || !data->full_map_data)
 		return ;
 	map = NULL;
-	while (data->fullMapData[i])
+	while (data->full_map_data[i])
 	{
-		map = ft_strjoin(map, data->fullMapData[i]);
+		map = ft_strjoin(map, data->full_map_data[i]);
 		i++;
 	}
-	data->mapStructure = ft_split(map, '\n');
-	data->mapStructureClone = my_split(map, '\n');
-	if (!data->mapStructure || !data->mapStructureClone)
+	data->map_structure = ft_split(map, '\n');
+	data->map_structure_clone = my_split(map, '\n');
+	if (!data->map_structure || !data->map_structure_clone)
 		print_error(data, "Empty Map.");
 	free(map);
 }

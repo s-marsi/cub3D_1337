@@ -31,11 +31,10 @@ void	init_player(t_init *vars)
 	vars->player->player_y = (player_y * vars->tile_size);
 	vars->player->width = 5;
 	vars->player->height = 5;
-	vars->player->turnDirection = 0;
-	vars->player->walkDirection = 0;
-	vars->player->walkDirection_u_d = 0;
-	vars->player->walkDirection_l_r = 0;
-	vars->player->rotationAngle = ft_rotate_angle(player_x, player_y, vars);
-	vars->player->walkSpeed = 4;
-	vars->player->turnSpeed = 4 * (M_PI / 180);
+	vars->player->turn_direction = 0;
+	vars->player->walk_direction_u_d = 0;
+	vars->player->walk_direction_l_r = 0;
+	vars->player->rotation_angle = ft_rotate_angle(player_x, player_y, vars);
+	vars->player->walk_speed = 4;
+	vars->player->turn_speed = 4 * (M_PI / 180);
 }

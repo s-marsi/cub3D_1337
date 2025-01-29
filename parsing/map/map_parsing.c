@@ -82,6 +82,6 @@ void	check_bad_charactere(t_data *data, char **map)
 
 void	parsing_map(t_data *data)
 {
-	check_bad_charactere(data, data->mapStructure);
-	map_validation(data, data->mapStructure);
+	check_bad_charactere(data, data->map_structure);
+	map_validation(data, data->map_structure);
 }

@@ -3,50 +3,50 @@
 void	calc_np_ud(t_init *vars, double *newPlayerX, double *newPlayerY)
 {
 	*newPlayerX = vars->player->player_x + \
-		(cos(vars->player->rotationAngle) * vars->player->walkSpeed);
+		(cos(vars->player->rotation_angle) * vars->player->walk_speed);
 	*newPlayerY = vars->player->player_y + \
-		(sin(vars->player->rotationAngle) * vars->player->walkSpeed);
+		(sin(vars->player->rotation_angle) * vars->player->walk_speed);
 }
 
 void	calc_np_nud(t_init *vars, double *newPlayerX, double *newPlayerY)
 {
 	*newPlayerX = vars->player->player_x + \
-		(-cos(vars->player->rotationAngle) * vars->player->walkSpeed);
+		(-cos(vars->player->rotation_angle) * vars->player->walk_speed);
 	*newPlayerY = vars->player->player_y + \
-		(-sin(vars->player->rotationAngle) * vars->player->walkSpeed);
+		(-sin(vars->player->rotation_angle) * vars->player->walk_speed);
 }
 
 void	calc_np_lr(t_init *vars, double *newPlayerX, double *newPlayerY)
 {
 	*newPlayerX = vars->player->player_x + \
-		(-sin(vars->player->rotationAngle) * vars->player->walkSpeed);
+		(-sin(vars->player->rotation_angle) * vars->player->walk_speed);
 	*newPlayerY = vars->player->player_y + \
-		(cos(vars->player->rotationAngle) * vars->player->walkSpeed);
+		(cos(vars->player->rotation_angle) * vars->player->walk_speed);
 }
 
 void	calc_np_nlr(t_init *vars, double *newPlayerX, double *newPlayerY)
 {
 	*newPlayerX = vars->player->player_x + \
-		(sin(vars->player->rotationAngle) * vars->player->walkSpeed);
+		(sin(vars->player->rotation_angle) * vars->player->walk_speed);
 	*newPlayerY = vars->player->player_y + \
-		(-cos(vars->player->rotationAngle) * vars->player->walkSpeed);
+		(-cos(vars->player->rotation_angle) * vars->player->walk_speed);
 }
 
 void	calc_np_position(t_init *vars, double *newPlayerX, double *newPlayerY)
 {
-	if (vars->player->walkDirection_u_d == 1)
+	if (vars->player->walk_direction_u_d == 1)
 	{
 		calc_np_ud(vars, newPlayerX, newPlayerY);
 	}
-	else if (vars->player->walkDirection_u_d == -1)
+	else if (vars->player->walk_direction_u_d == -1)
 	{
 		calc_np_nud(vars, newPlayerX, newPlayerY);
 	}
-	else if (vars->player->walkDirection_l_r == 1)
+	else if (vars->player->walk_direction_l_r == 1)
 	{
 		calc_np_lr(vars, newPlayerX, newPlayerY);
 	}
-	else if (vars->player->walkDirection_l_r == -1)
+	else if (vars->player->walk_direction_l_r == -1)
 	{
 		calc_np_nlr(vars, newPlayerX, newPlayerY);
 	}

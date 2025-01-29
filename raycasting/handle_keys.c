@@ -3,17 +3,17 @@
 int	handle_key_up(int keycode, t_init *vars)
 {
 	if (keycode == 119)
-		vars->player->walkDirection_u_d = 0;
+		vars->player->walk_direction_u_d = 0;
 	if (keycode == 115)
-		vars->player->walkDirection_u_d = 0;
+		vars->player->walk_direction_u_d = 0;
 	if (keycode == 97)
-		vars->player->walkDirection_l_r = 0;
+		vars->player->walk_direction_l_r = 0;
 	if (keycode == 100)
-		vars->player->walkDirection_l_r = 0;
+		vars->player->walk_direction_l_r = 0;
 	if (keycode == 65363)
-		vars->player->turnDirection = 0;
+		vars->player->turn_direction = 0;
 	if (keycode == 65361)
-		vars->player->turnDirection = 0;
+		vars->player->turn_direction = 0;
 	return (0);
 }
 
@@ -25,7 +25,7 @@ int	handle_mouse_move(int x, int y, t_init *vars)
 	(void)y;
 	center_x = vars->window_width / 2;
 	delta_x = x - center_x;
-	vars->player->rotationAngle += delta_x * vars->player->turnSpeed * 0.0005;
+	vars->player->rotation_angle += delta_x * vars->player->turn_speed * 0.0005;
 	return (0);
 }
 
@@ -34,23 +34,23 @@ int	handle_key_press(int keycode, t_init *vars)
 	if (keycode == 65307)
 		free_resources(vars);
 	if (keycode == 119)
-		vars->player->walkDirection_u_d = 1;
+		vars->player->walk_direction_u_d = 1;
 	if (keycode == 115)
-		vars->player->walkDirection_u_d = -1;
+		vars->player->walk_direction_u_d = -1;
 	if (keycode == 97)
-		vars->player->walkDirection_l_r = -1;
+		vars->player->walk_direction_l_r = -1;
 	if (keycode == 100)
-		vars->player->walkDirection_l_r = 1;
+		vars->player->walk_direction_l_r = 1;
 	if (keycode == 65363)
-		vars->player->turnDirection = 1;
+		vars->player->turn_direction = 1;
 	if (keycode == 65361)
-		vars->player->turnDirection = -1;
+		vars->player->turn_direction = -1;
 	return (0);
 }
 
-static int handle_x_click(t_init *vars)
+static int	handle_x_click(t_init *vars)
 {
-    free_resources(vars);
+	free_resources(vars);
 	return (0);
 }
 

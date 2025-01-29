@@ -49,7 +49,7 @@ size_t	ft_height(t_data *data)
 	size_t	l;
 
 	l = 0;
-	while (data->mapStructure[l])
+	while (data->map_structure[l])
 		l++;
 	return (l);
 }
@@ -64,7 +64,7 @@ size_t	ft_max_width(t_data *data)
 	max = 0;
 	while (i < ft_height(data))
 	{
-		len = ft_strlen(data->mapStructure[i]);
+		len = ft_strlen(data->map_structure[i]);
 		if (max < len)
 			max = len;
 		i++;
