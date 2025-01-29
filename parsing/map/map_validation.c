@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/29 10:29:54 by smarsi            #+#    #+#             */
+/*   Updated: 2025/01/29 10:29:58 by smarsi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../cub3D.h"
 
 void	ft_print(t_data *data, char **test)
@@ -11,12 +23,6 @@ void	ft_print(t_data *data, char **test)
 	{
 		i++;
 	}
-	// printf("*%s*\n", data->texture_east);
-	// printf("*%s*\n", data->texture_north);
-	// printf("*%s*\n", data->texture_south);
-	// printf("*%s*\n", data->texture_west);
-	// printf("*%s*\n", data->texture_color);
-	// printf("*%s*\n", data->texture_fcolor);
 	(void) data;
 	(void) test;
 }

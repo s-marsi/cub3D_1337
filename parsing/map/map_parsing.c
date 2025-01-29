@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parsing.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/29 10:30:17 by smarsi            #+#    #+#             */
+/*   Updated: 2025/01/29 10:30:18 by smarsi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../cub3D.h"
 
 int	validate_zero_surroundings(char **map, int i, int j)
@@ -70,10 +82,6 @@ void	check_bad_charactere(t_data *data, char **map)
 
 void	parsing_map(t_data *data)
 {
-	// Fill the shorter line, which is smaller compared to the longer line, with 2 so that they are equal in weight.
-	// adjust_map_width(data);
-	// Check that the map contains only the 6 possible characters: [01NSEW], and that the player is not repeated.
 	check_bad_charactere(data, data->mapStructure);
-	// Check that the map is closed/surrounded by walls.
 	map_validation(data, data->mapStructure);
 }
