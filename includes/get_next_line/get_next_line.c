@@ -6,11 +6,11 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 10:52:23 by smarsi            #+#    #+#             */
-/*   Updated: 2024/11/02 22:48:48 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/29 18:37:43 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../../mandatory/cub3D.h"
 
 static char	*read_line(char *src)
 {

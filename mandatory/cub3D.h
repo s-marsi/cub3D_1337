@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:49:53 by smarsi            #+#    #+#             */
-/*   Updated: 2025/01/29 18:02:14 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/29 18:38:09 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #  define BUFFER_SIZE 100
 # endif
 
-# include "libft/libft.h"
+# include "../includes/libft/libft.h"
 # include "mlx.h"
 # include <math.h>
 
