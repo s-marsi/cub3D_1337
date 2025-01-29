@@ -45,10 +45,8 @@ int	initialize_game_variables(t_init *vars)
 		if (!vars->textures[i])
 			return (0);
 		vars->texture_data[i] = mlx_get_data_addr(vars->textures[i],
-                                          &vars->texture_bpp[i],
-                                          &vars->texture_line_size[i],
-                                          &vars->texture_endian[i]);
-
+            &vars->texture_bpp[i],&vars->texture_line_size[i],
+					&vars->texture_endian[i]);
 		i++;
 	}
 	vars->rays = malloc(sizeof(t_rays) * vars->num_rays);
@@ -88,8 +86,7 @@ void	raycasting(t_data *data)
 	}
 	init_player(&vars);
 	handle_keys(&vars);
-	mlx_put_image_to_window(vars.mlx, vars.win, vars.mlx_img, 0, 0);
-	update(&vars);
+	mlx_loop_hook(vars.mlx, ft_move_player, &vars);
 	mlx_loop(vars.mlx);
 	mlx_destroy_window(vars.mlx, vars.win);
 }

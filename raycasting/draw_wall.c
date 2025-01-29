@@ -11,3 +11,15 @@ void	draw_floor_ceiling(t_init *vars, int ray, int t_pix, int b_pix)
 	while (i < (int)vars->window_height)
 		put_one_pixel(vars, ray, i++, vars->data->floor_color);
 }
+
+int	map_h_wall(float x, float y, t_init *vars)
+{
+	int	map_g_i_x;
+	int	map_g_i_y;
+
+	if (x < 0 || x >= vars->window_width || y < 0 || y >= vars->window_height)
+		return (1);
+	map_g_i_x = floor(x / vars->tile_size);
+	map_g_i_y = floor(y / vars->tile_size);
+	return (vars->map[map_g_i_y][map_g_i_x] == '1');
+}
