@@ -8,7 +8,7 @@ LIBFT = ./libft/
 
 LIBFT_NAME = libft/libft.a
 
-MINILIBX_NAME = mlx/libmlx.a mlx/libmlx_Linux.a
+MLXFLAGS = -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz
 
 SOUFAYNE_FILES  =  main.c \
 	parsing/check_color_comma.c parsing/check_color.c parsing/start.c parsing/getMap.c  parsing/texture_validation.c parsing/texture_validation_helper.c parsing/utils.c parsing/my_split.c \
@@ -21,12 +21,12 @@ AMINE_FILES = raycasting/start.c raycasting/init_player.c raycasting/get_positio
 
 FILES_O = $(SOUFAYNE_FILES:.c=.o) $(AMINE_FILES:.c=.o)
 
-# %.o: %.c
-# 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+%.o : %.c
+	$(CC) $(CFLAGS)  -I/usr/include -Imlx -c $< -o $@
 
 $(NAME): $(FILES_O) $(S_FA_FILES_OILES_O)
 	make -s -C $(LIBFT)
-	$(CC) $(CFLAGS) $(FILES_O) $(S_FA_FILES_OILES_O) $(LIBFT_NAME) $(MINILIBX_NAME) -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(CFLAGS) $(FILES_O) $(S_FA_FILES_OILES_O) $(LIBFT_NAME) $(MLXFLAGS) -o $(NAME)
 
 clean : 
 	make clean -s -C $(LIBFT)
@@ -41,4 +41,4 @@ re : fclean $(NAME)
 .PHONY : clean fclean
 
 run : 
-	valgrind --leak-check=full --show-leak-kinds=all   ./cub3D map/rgb2.cub 
+	valgrind --leak-check=full --show-leak-kinds=all   ./cub3D map/test.cub 
