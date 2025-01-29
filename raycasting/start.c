@@ -43,7 +43,11 @@ int	initialize_game_variables(t_init *vars)
 	while (i < 4)
 	{
 		if (!vars->textures[i])
-			return (0);
+		{
+			ft_putendl_fd("Error", 2);
+			ft_putendl_fd("Unable to Load Textures", 2);
+			free_resources(vars);
+		}
 		vars->texture_data[i] = mlx_get_data_addr(vars->textures[i],
             &vars->texture_bpp[i],&vars->texture_line_size[i],
 					&vars->texture_endian[i]);
@@ -57,6 +61,7 @@ int	initialize_game_variables(t_init *vars)
 
 int	init_values(t_init *vars, t_data *pars)
 {
+	vars->rays = NULL;
 	if (!initialize_window_and_image(vars, pars))
 		return (0);
 	if (!initialize_game_variables(vars))
@@ -71,19 +76,7 @@ void	raycasting(t_data *data)
 
 	vars.data = data;
 	vars.player = &player;
-	if (!init_values(&vars, data))
-	{
-		printf("ERROR in initilization");
-		mlx_destroy_image(vars.mlx, vars.mlx_img);
-		mlx_clear_window(vars.mlx, vars.win);
-		mlx_destroy_window(vars.mlx, vars.win);
-		mlx_destroy_display(vars.mlx);
-		ft_free(data->fullMapData);
-		ft_free(data->mapStructure);
-		ft_free(data->mapStructureClone);
-		(free(vars.rays), free(vars.mlx), exit(0));
-		exit(1);
-	}
+	init_values(&vars, data);
 	init_player(&vars);
 	handle_keys(&vars);
 	mlx_loop_hook(vars.mlx, ft_move_player, &vars);

@@ -32,16 +32,7 @@ int	handle_mouse_move(int x, int y, t_init *vars)
 int	handle_key_press(int keycode, t_init *vars)
 {
 	if (keycode == 65307)
-	{
-		mlx_destroy_image(vars->mlx, vars->mlx_img);
-		mlx_clear_window(vars->mlx, vars->win);
-		mlx_destroy_window(vars->mlx, vars->win);
-		mlx_destroy_display(vars->mlx);
-		ft_free(vars->data->fullMapData);
-		ft_free(vars->data->mapStructure);
-		ft_free(vars->data->mapStructureClone);
-		(free(vars->rays), free(vars->mlx), exit(0));
-	}
+		free_resources(vars);
 	if (keycode == 119)
 		vars->player->walkDirection_u_d = 1;
 	if (keycode == 115)
@@ -59,9 +50,7 @@ int	handle_key_press(int keycode, t_init *vars)
 
 static int handle_x_click(t_init *vars)
 {
-    mlx_destroy_window(vars->mlx, vars->win);
-	free(vars->mlx);
-	exit(0);
+    free_resources(vars);
 	return (0);
 }
 

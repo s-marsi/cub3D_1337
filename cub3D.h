@@ -200,5 +200,6 @@ void	put_one_pixel(t_init *vars, int x, int y, int color);
 void	initialize_ray(t_init *vars, size_t i, float rayAngle);
 void	perform_dda(t_init *vars, size_t i);
 void	calc_np_position(t_init *vars, double *newPlayerX, double *newPlayerY);
+void    free_resources(t_init *vars);
 
 #endif
