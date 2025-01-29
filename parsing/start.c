@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   start.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/29 10:30:40 by smarsi            #+#    #+#             */
+/*   Updated: 2025/01/29 10:30:41 by smarsi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 static void	valid_map_name(char *name)
@@ -63,25 +75,17 @@ void	check_all_identifiers(t_data *data)
 	while (i < 6)
 	{
 		if (data->counters[i] == 0)
-				print_error(data, "Map invalid.");
+			print_error(data, "Map invalid.");
 		i++;
 	}
 }
 
 void	parsing_part(char *av[], t_data *data)
 {
-	// map extension is .cub 
 	valid_map_name(av[1]);
-	// valid that the map exist
 	valid_map_path(av[1]);
-	// get the file lines using get_next_line
 	parse_map_file(av[1], data);
-	// i think no need to this for check empty map
-	// check_empty_map(data);
-	// ft_print(data, data->fullMapData);
-	// validate_texture_path(data);
 	get_texture_config(data);
-	// check valide texture. (if i want to chek that the map in the last modify this.)
 	get_color(data);
 	if (!data->mapStructureClone)
 		print_error(data, "Empty Map.");
@@ -91,5 +95,4 @@ void	parsing_part(char *av[], t_data *data)
 	textures_extension(data, data->texture_west);
 	check_all_identifiers(data);
 	parsing_map(data);
-	// ft_print(data, data->mapStructureClone);
 }
