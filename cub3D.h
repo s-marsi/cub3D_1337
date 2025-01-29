@@ -55,10 +55,10 @@ typedef struct s_rays
 
 typedef struct s_data
 {
-    int    nb_of_rows;
-    int    nb_of_colums;
-    int    width;
-    int    height;
+    int     nb_of_rows;
+    int     nb_of_colums;
+    int     width;
+    int     height;
     char	**mapStructureClone;
     char	**mapStructure;
     char	**fullMapData;

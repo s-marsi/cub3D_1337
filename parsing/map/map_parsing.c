@@ -2,15 +2,19 @@
 
 int	validate_zero_surroundings(char **map, int i, int j)
 {
-	if (!map[i][j - 1] || !map[i][j + 1] || (int)ft_strlen(map[i - 1]) < j || !map[i - 1][j] || (int)ft_strlen(map[i + 1]) < j || !map[i + 1][j])
+	if (!map[i][j - 1] || !map[i][j + 1] || \
+	(int)ft_strlen(map[i - 1]) < j || !map[i - 1][j] \
+	|| (int)ft_strlen(map[i + 1]) < j || !map[i + 1][j])
 		return (0);
 	else if (i >= 0 && j > 0 && is_withspace(map[i][j - 1]))
 		return (0);
 	else if (i >= 0 && j >= 0 && is_withspace(map[i][j + 1]))
 		return (0);
-	else if ((int)ft_strlen(map[i - 1]) <= j || (i >= 0 && j >= 0 && is_withspace(map[i + 1][j])))
+	else if ((int)ft_strlen(map[i - 1]) <= j || \
+	(i >= 0 && j >= 0 && is_withspace(map[i + 1][j])))
 		return (0);
-	else if ((int)ft_strlen(map[i - 1]) <= j || (i > 0 && j >= 0 && is_withspace(map[i - 1][j])))
+	else if ((int)ft_strlen(map[i - 1]) <= j || \
+	(i > 0 && j >= 0 && is_withspace(map[i - 1][j])))
 		return (0);
 	return (1);
 }

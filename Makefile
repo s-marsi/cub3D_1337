@@ -11,7 +11,7 @@ LIBFT_NAME = libft/libft.a
 MINILIBX_NAME = mlx/libmlx.a mlx/libmlx_Linux.a
 
 SOUFAYNE_FILES  =  main.c \
-	parsing/check_color.c parsing/start.c parsing/getMap.c  parsing/texture_validation.c parsing/texture_validation_helper.c parsing/utils.c parsing/my_split.c \
+	parsing/check_color_comma.c parsing/check_color.c parsing/start.c parsing/getMap.c  parsing/texture_validation.c parsing/texture_validation_helper.c parsing/utils.c parsing/my_split.c \
 	parsing/map/map_parsing.c parsing/map/map_validation.c parsing/map/adjust_map.c\
 	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
