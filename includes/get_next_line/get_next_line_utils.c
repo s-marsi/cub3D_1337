@@ -6,11 +6,11 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 10:53:03 by smarsi            #+#    #+#             */
-/*   Updated: 2024/11/02 22:51:26 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/29 18:37:23 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../../mandatory/cub3D.h"
 
 char	*ft_strjoin_next(char *s1, char *s2)
 {
