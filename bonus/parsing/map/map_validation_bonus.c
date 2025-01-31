@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:29:54 by smarsi            #+#    #+#             */
-/*   Updated: 2025/01/29 18:44:44 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/30 16:18:25 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	check_empty_line_map(t_data *data)
 			i++;
 			continue ;
 		}
-		if (flag && line[j] && in_array(line[j], "0 1NSEWD\n"))
+		if (flag && line[j] && in_array(line[j], "0 1NSEWDA\n"))
 			print_error(data, "New lines are not allowed between map entries.");
 		i++;
 	}
@@ -69,7 +69,7 @@ void	check_map(t_data *data)
 		line = data->map_structure_clone[i];
 		while (line[j])
 		{
-			if (!in_array(line[j], "0 1NSEWD\n"))
+			if (!in_array(line[j], "0 1NSEWDA\n"))
 				print_error(data, "There is a bad character in the map.");
 			j++;
 		}

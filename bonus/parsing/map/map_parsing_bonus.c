@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:30:17 by smarsi            #+#    #+#             */
-/*   Updated: 2025/01/29 18:44:34 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/30 16:18:13 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	check_bad_charactere(t_data *data, char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (!in_array(map[i][j], "01NSEWD \t"))
+			if (!in_array(map[i][j], "01NSEWDA \t"))
 			{
 				print_error(data, "Bad character in the map.");
 			}

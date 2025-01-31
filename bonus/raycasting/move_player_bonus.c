@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:44:23 by smarsi            #+#    #+#             */
-/*   Updated: 2025/01/29 18:20:37 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/31 09:27:50 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	update_player_rotation(t_init *vars)
 int	is_collision(double newPlayerX, double newPlayerY, t_init *vars)
 {
 	return (map_h_wall(newPlayerX, newPlayerY, vars)
-		|| map_h_wall(newPlayerX + 1, newPlayerY, vars)
-		|| map_h_wall(newPlayerX, newPlayerY + 1, vars)
-		|| map_h_wall(newPlayerX + 1, newPlayerY + 1, vars));
+		|| map_h_wall(newPlayerX + 2, newPlayerY, vars)
+		|| map_h_wall(newPlayerX, newPlayerY + 2, vars)
+		|| map_h_wall(newPlayerX + 2, newPlayerY + 2, vars));
 }
 
 void	update_player_position(t_init *vars, double new_px, double new_py)
@@ -48,6 +48,7 @@ int	ft_move_player(t_init *vars)
 	double	new_px;
 	double	new_py;
 
+	animation(vars);
 	update_player_rotation(vars);
 	calc_np_position(vars, &new_px, &new_py);
 	if (!is_collision(new_px, new_py, vars))
@@ -56,5 +57,6 @@ int	ft_move_player(t_init *vars)
 		refresh_window(vars);
 	}
 	cast_rays(vars);
+	render(vars);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:44:02 by smarsi            #+#    #+#             */
-/*   Updated: 2025/01/29 22:29:13 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/30 16:19:05 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ int	map_h_wall(float x, float y, t_init *vars)
 		return (1);
 	map_g_i_x = floor(x / vars->tile_size);
 	map_g_i_y = floor(y / vars->tile_size);
-	return (in_array(vars->map[map_g_i_y][map_g_i_x], "1D"));
+	return (in_array(vars->map[map_g_i_y][map_g_i_x], "1AD"));
 }

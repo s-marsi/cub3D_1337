@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:30:53 by smarsi            #+#    #+#             */
-/*   Updated: 2025/01/29 18:20:02 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/30 16:18:43 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	is_valid_texture(t_data *data, char *texture, char c)
 void	check_identifiers_get_map(t_data *data, char *line, int index)
 {
 	check_identifiers(data, line);
-	if (!in_array(line[0], "01NSEW\n"))
+	if (!in_array(line[0], "01NSEWA\n"))
 		print_error(data, "There is a bad character in the file.");
 	is_valid_texture(data, data->texture_north, 'N');
 	is_valid_texture(data, data->texture_south, 'S');
