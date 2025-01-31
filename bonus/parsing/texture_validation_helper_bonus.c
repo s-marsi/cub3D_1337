@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:30:49 by smarsi            #+#    #+#             */
-/*   Updated: 2025/01/29 18:45:03 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/30 16:18:53 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	check_identifiers(t_data *data, char *line)
 	{
 		if (data->counters[i] == 0)
 		{
-			if (in_array(line[0], "01NSEWD\n"))
+			if (in_array(line[0], "01NSEWDA\n"))
 				print_error(data, "Identifier: \
 [Invalid Position | Not Found | Invalid]");
 			print_error(data, "There is a bad character in the file.");

@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:44:02 by smarsi            #+#    #+#             */
-/*   Updated: 2025/01/29 21:16:29 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/30 11:53:17 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ int	map_h_wall(float x, float y, t_init *vars)
 	int	map_g_i_y;
 
 	if (x < 0 || x >= vars->window_width || y < 0 || y >= vars->window_height)
+	{
 		return (1);
+	}
 	map_g_i_x = floor(x / vars->tile_size);
 	map_g_i_y = floor(y / vars->tile_size);
 	return (vars->map[map_g_i_y][map_g_i_x] == '1');

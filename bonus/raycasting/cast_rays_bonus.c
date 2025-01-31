@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:43:48 by smarsi            #+#    #+#             */
-/*   Updated: 2025/01/29 18:20:16 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/31 10:20:31 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	cast_rays(t_init *vars)
 		calculate_wall_height(vars, i);
 		adjust_pixel_bounds(vars, i);
 		render_wall(vars, i);
+		vars->animation->is_display = 0;
+		vars->is_door = 0;
 		i++;
 	}
 }

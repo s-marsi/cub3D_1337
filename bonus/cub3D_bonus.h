@@ -6,12 +6,12 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:49:53 by smarsi            #+#    #+#             */
-/*   Updated: 2025/01/29 22:51:41 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/31 11:16:59 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H_BONUS
-# define CUB3D_H_BONUS
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
 # endif
@@ -28,6 +28,31 @@
 # define DOWN_AROW 65364
 # define RIGHT_AROW 65363
 # define LEFT_AROW 65361
+# define MINIMAP_WIDTH  150
+# define MINIMAP_HEIGHT 150
+
+typedef struct s_rect
+{
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+	int	color;
+}	t_rect;
+
+typedef struct s_animation
+{
+	void			*textures[3];
+	char			*data[3];
+	int				width[3];
+	int				height[3];
+	int				bpp[3];
+	int				line_size[3];
+	int				endian[3];
+	int				frame;
+	int				index;
+	int				is_display;
+}	t_animation;
 
 typedef struct s_player
 {
@@ -78,13 +103,6 @@ typedef struct s_data
 	int		player_y;
 }	t_data;
 
-typedef struct s_door
-{
-	void		*texture;
-	int			width;
-	int			height;
-}	t_door;
-
 typedef struct s_init
 {
 	void		*mlx;
@@ -116,7 +134,8 @@ typedef struct s_init
 	int			texture_line_size[5];
 	int			texture_endian[5];
 	int			color;
-	t_door		*door;
+	int			is_door;
+	t_animation	*animation;
 }	t_init;
 
 typedef struct s_dda
@@ -129,54 +148,67 @@ typedef struct s_dda
 	float	side_dist_y;
 }	t_dda;
 
-char		*get_next_line(int fd);
-char		*ft_strjoin_next(char *s1, char *s2);
-char		*ft_strchr(const char *s, int c);
-char		*read_all(int fd, char *last);
-void		ft_free(char **str);
-void		parsing_part(char *av[], t_data *data);
-void		parse_map_file(char *name, t_data *data);
-void		valid_map(char *name, t_data *data);
-void		check_map(t_data *data);
-void		get_color(t_data *data);
-void		get_map(t_data *data, int i);
-void		get_texture_config(t_data *data);
-void		validate_texture_path(t_data *data);
-void		textures_extension(t_data *data, char *texture);
-void		check_identifiers(t_data *data, char *line);
-int			is_identifier(t_data *data, char *line, int *values);
-void		skip_space(char **line);
-char		**my_split(char const *s, char c);
-void		print_error(t_data *data, char *msg);
-int			in_array(char to_search, char *search_in);
-void		raycasting(t_data *data);
-int			is_withspace(int c);
-void		only_valid_characters(t_data *data, char *texture, char c);
-void		valid_comma(t_data *data, char *texture);
-void		is_valid_color(t_data *data, char *texture, char c);
-long long	my_atoi(t_data *data, char *str);
-void		print_repeated(t_data *data, int i);
-void		parsing_map(t_data *data);
-void		adjust_map_width(t_data *data);
-void		ft_print(t_data *data, char **test);
-int			get_position_x(char **map);
-int			get_position_y(char **map);
-size_t		ft_height(t_data *data);
-size_t		ft_max_width(t_data *data);
-void		init_player(t_init *vars);
-void		handle_keys(t_init *vars);
-size_t		ft_height(t_data *data);
-size_t		ft_max_width(t_data *data);
-void		cast_rays(t_init *vars);
-int			ft_move_player(t_init *vars);
-void		render_wall(t_init *vars, int ray);
-int			map_h_wall(float x, float y, t_init *vars);
-void		draw_floor_ceiling(t_init *vars, int ray, int t_pix, int b_pix);
-void		put_one_pixel(t_init *vars, int x, int y, int color);
-void		initialize_ray(t_init *vars, size_t i, float ray_angle);
-void		perform_dda(t_init *vars, size_t i);
-void		calc_np_position(t_init *vars, double *newPlayerX, \
-			double *newPlayerY);
-void		free_resources(t_init *vars);
-void		open_door(t_init *vars);
+char			*get_next_line(int fd);
+char			*ft_strjoin_next(char *s1, char *s2);
+char			*ft_strchr(const char *s, int c);
+char			*read_all(int fd, char *last);
+void			ft_free(char **str);
+void			parsing_part(char *av[], t_data *data);
+void			parse_map_file(char *name, t_data *data);
+void			valid_map(char *name, t_data *data);
+void			check_map(t_data *data);
+void			get_color(t_data *data);
+void			get_map(t_data *data, int i);
+void			get_texture_config(t_data *data);
+void			validate_texture_path(t_data *data);
+void			textures_extension(t_data *data, char *texture);
+void			check_identifiers(t_data *data, char *line);
+int				is_identifier(t_data *data, char *line, int *values);
+void			skip_space(char **line);
+char			**my_split(char const *s, char c);
+void			print_error(t_data *data, char *msg);
+int				in_array(char to_search, char *search_in);
+void			raycasting(t_data *data);
+int				is_withspace(int c);
+void			only_valid_characters(t_data *data, char *texture, char c);
+void			valid_comma(t_data *data, char *texture);
+void			is_valid_color(t_data *data, char *texture, char c);
+long long		my_atoi(t_data *data, char *str);
+void			print_repeated(t_data *data, int i);
+void			parsing_map(t_data *data);
+void			adjust_map_width(t_data *data);
+void			ft_print(t_data *data, char **test);
+int				get_position_x(char **map);
+int				get_position_y(char **map);
+size_t			ft_height(t_data *data);
+size_t			ft_max_width(t_data *data);
+void			init_player(t_init *vars);
+void			handle_keys(t_init *vars);
+size_t			ft_height(t_data *data);
+size_t			ft_max_width(t_data *data);
+void			cast_rays(t_init *vars);
+int				ft_move_player(t_init *vars);
+void			render_wall(t_init *vars, int ray);
+int				map_h_wall(float x, float y, t_init *vars);
+void			draw_floor_ceiling(t_init *vars, int ray, int t_pix, int b_pix);
+void			put_one_pixel(t_init *vars, int x, int y, int color);
+void			initialize_ray(t_init *vars, size_t i, float ray_angle);
+void			perform_dda(t_init *vars, size_t i);
+void			calc_np_position(t_init *vars, double *newPlayerX, \
+				double *newPlayerY);
+void			free_resources(t_init *vars);
+void			open_door(t_init *vars);
+void			render(t_init *vars);
+int				is_door(t_init *vars, int ray);
+int				is_animation(t_init *vars, int ray);
+void			animation(t_init *vars);
+void			draw_animation(t_init *vars, double *x, int ray);
+void			draw_door(t_init *vars, double *x, int ray);
+void			get_x(t_init *vars, int ray, double *x);
+unsigned int	my_get_color(t_init *vars, int x, int y, int index);
+double			get_x_render(t_init *vars, int ray);
+int				initialize_game_variables(t_init *vars);
+void			initialize_textures(t_init *vars);
+int				initialize_window_and_image(t_init *vars, t_data *pars);
+void			minimap_color(t_rect *tile_rect, char c);
 #endif
