@@ -20,10 +20,15 @@ void	update_player_rotation(t_init *vars)
 
 int	is_collision(double newPlayerX, double newPlayerY, t_init *vars)
 {
-	return (map_h_wall(newPlayerX, newPlayerY, vars)
-		|| map_h_wall(newPlayerX + 2, newPlayerY, vars)
-		|| map_h_wall(newPlayerX, newPlayerY + 2, vars)
-		|| map_h_wall(newPlayerX + 2, newPlayerY + 2, vars));
+	double	padding;
+
+	padding = 1.5;
+	return (
+		map_h_wall(newPlayerX - padding, newPlayerY - padding, vars)
+		|| map_h_wall(newPlayerX + padding, newPlayerY - padding, vars)
+		|| map_h_wall(newPlayerX - padding, newPlayerY + padding, vars)
+		|| map_h_wall(newPlayerX + padding, newPlayerY + padding, vars)
+	);
 }
 
 void	update_player_position(t_init *vars, double new_px, double new_py)
@@ -57,6 +62,7 @@ int	ft_move_player(t_init *vars)
 		refresh_window(vars);
 	}
 	cast_rays(vars);
+mlx_put_image_to_window(vars->mlx, vars->win, vars->mlx_img, 0, 0);
 	render(vars);
 	return (0);
 }

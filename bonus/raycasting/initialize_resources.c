@@ -15,8 +15,7 @@
 int	initialize_window_and_image(t_init *vars, t_data *pars)
 {
 	vars->tile_size = 30;
-	vars->window_width = ft_max_width(pars) * vars->tile_size;
-	vars->window_height = ft_height(pars) * vars->tile_size;
+	ft_init_window(vars, pars);
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 		return (0);

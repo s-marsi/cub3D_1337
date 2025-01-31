@@ -1,6 +1,6 @@
 CC = cc 
 
-CFLAGS = -Wall -Wextra -Werror  -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror  -g3 #-fsanitize=address
 
 NAME = cub3D
 
@@ -42,6 +42,7 @@ $(NAME): $(FILES_O)
 all : $(NAME) bonus
 
 $(NAME_BONUS) : $(FILES_O_BONUS)
+	make -s -C $(LIBFT)
 	$(CC) $(CFLAGS) $(FILES_O_BONUS) $(LIBFT_NAME) $(MLXFLAGS) -o $(NAME_BONUS)
 
 bonus: $(NAME_BONUS)

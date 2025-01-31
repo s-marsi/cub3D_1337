@@ -12,6 +12,16 @@
 
 #include "../cub3D_bonus.h"
 
+void	ft_init_window(t_init *vars, t_data *pars)
+{
+	vars->window_width = ft_max_width(pars) * vars->tile_size;
+	vars->window_height = ft_height(pars) * vars->tile_size;
+	if (vars->window_height < 600)
+		vars->window_height = 600;
+	if (vars->window_width < 700)
+		vars->window_width = 700;
+}
+
 int	init_values(t_init *vars, t_data *pars)
 {
 	vars->rays = NULL;

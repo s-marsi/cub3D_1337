@@ -211,4 +211,5 @@ int				initialize_game_variables(t_init *vars);
 void			initialize_textures(t_init *vars);
 int				initialize_window_and_image(t_init *vars, t_data *pars);
 void			minimap_color(t_rect *tile_rect, char c);
+void			ft_init_window(t_init *vars, t_data *pars);
 #endif

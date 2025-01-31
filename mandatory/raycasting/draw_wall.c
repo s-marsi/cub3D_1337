@@ -33,7 +33,7 @@ int	map_h_wall(float x, float y, t_init *vars)
 	{
 		return (1);
 	}
-	map_g_i_x = floor(x / vars->tile_size);
-	map_g_i_y = floor(y / vars->tile_size);
+	map_g_i_x = round(x / vars->tile_size);
+	map_g_i_y = round(y / vars->tile_size);
 	return (vars->map[map_g_i_y][map_g_i_x] == '1');
 }

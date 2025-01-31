@@ -16,7 +16,7 @@ void	put_one_pixel(t_init *vars, int x, int y, int color)
 {
 	int	offset;
 
-	if (x < 0 && x > vars->window_width && y < 0 && y > vars->window_height)
+	if (x < 0 || x >= vars->window_width || y < 0 || y >= vars->window_height)
 		return ;
 	offset = (y * vars->size_line) + (x * (vars->bits_per_pixel / 8));
 	*(unsigned int *)(vars->data_img + offset) = color;

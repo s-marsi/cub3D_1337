@@ -170,5 +170,6 @@ void		perform_dda(t_init *vars, size_t i);
 void		calc_np_position(t_init *vars, double *newPlayerX, \
 			double *newPlayerY);
 void		free_resources(t_init *vars);
+void		ft_init_window(t_init *vars, t_data *pars);
 
 #endif
