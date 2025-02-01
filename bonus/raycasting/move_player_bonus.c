@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:44:23 by smarsi            #+#    #+#             */
-/*   Updated: 2025/01/31 09:27:50 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/31 19:48:08 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_move_player(t_init *vars)
 		refresh_window(vars);
 	}
 	cast_rays(vars);
-mlx_put_image_to_window(vars->mlx, vars->win, vars->mlx_img, 0, 0);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->mlx_img, 0, 0);
 	render(vars);
 	return (0);
 }
