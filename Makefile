@@ -61,5 +61,8 @@ re : fclean $(NAME) $(NAME_BONUS)
 
 .SECONDARY : $(FILES_O) $(FILES_O_BONUS)
 
-run : 
+run_bonus : 
 	valgrind --leak-check=full --show-leak-kinds=all   ./cub3D_bonus maps/bonus.cub 
+
+run_mandatory : 
+	valgrind --leak-check=full --show-leak-kinds=all   ./cub3D maps/mandatory.cub 

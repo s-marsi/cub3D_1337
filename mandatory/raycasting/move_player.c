@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:44:23 by smarsi            #+#    #+#             */
-/*   Updated: 2025/01/31 11:21:25 by smarsi           ###   ########.fr       */
+/*   Updated: 2025/01/31 19:47:43 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	update_player_rotation(t_init *vars)
 
 int	is_collision(double newPlayerX, double newPlayerY, t_init *vars)
 {
-	double padding = 1.5;
+	double	padding;
+
+	padding = 1.5;
 	return (
 		map_h_wall(newPlayerX - padding, newPlayerY - padding, vars)
 		|| map_h_wall(newPlayerX + padding, newPlayerY - padding, vars)
@@ -28,7 +30,6 @@ int	is_collision(double newPlayerX, double newPlayerY, t_init *vars)
 		|| map_h_wall(newPlayerX + padding, newPlayerY + padding, vars)
 	);
 }
-
 
 void	update_player_position(t_init *vars, double new_px, double new_py)
 {
